@@ -1,0 +1,546 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:CrewAccess
+X-WR-CALNAME:CrewAccess-events
+X-WR-RELCALID:003823
+NAME:CrewAccess-events
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2989693-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260701T120000Z
+DTEND:20260701T180000Z
+SUMMARY:STANDBY (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nWed, 1 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    12:00               AYT\nStandby     12
+ :00  18:00        AYT          CCM SB3\nRelease     18:00               AY
+ T\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nWed\, 1 Jul 2026\n- - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 12:00               AYT\nStandby     12:00  18:00        AYT          CCM 
+ SB3\nRelease     18:00               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2846226-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260701T210000Z
+DTEND:20260702T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nWed, 1 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n<
+ /pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nWed\, 1 Jul 2026\n- - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2846227-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260702T210000Z
+DTEND:20260703T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nThu, 2 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n<
+ /pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nThu\, 2 Jul 2026\n- - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2846228-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260703T210000Z
+DTEND:20260704T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nFri, 3 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n<
+ /pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nFri\, 3 Jul 2026\n- - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2846229-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260704T210000Z
+DTEND:20260705T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nSat, 4 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n<
+ /pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nSat\, 4 Jul 2026\n- - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2854039-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260706T000000Z
+DTEND:20260706T100000Z
+SUMMARY:STANDBY (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nMon, 6 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    00:00               AYT\nStandby     00
+ :00  10:00        AYT          CCM SB1\nRelease     10:00               AY
+ T\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nMon\, 6 Jul 2026\n- - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 00:00               AYT\nStandby     00:00  10:00        AYT          CCM 
+ SB1\nRelease     10:00               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2799273-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260707T014000Z
+DTEND:20260707T114300Z
+SUMMARY:FLY (AYT-CPH-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nTue, 7 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    01:40               AYT\n570         02
+ :53  06:44        AYT - CPH    CCM\n571         07:50  11:13        CPH - 
+ AYT    CCM\nRelease     11:43               AYT\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nTue\, 7 Jul 2026\n- - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 01:40               AYT\n570         02:53  06:44        AYT - CPH    CCM\
+ n571         07:50  11:13        CPH - AYT    CCM\nRelease     11:43               
+ AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2799372-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260708T172500Z
+DTEND:20260709T012800Z
+SUMMARY:FLY (AYT-BTS-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nWed, 8 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    17:25               AYT\n418         18
+ :43  21:32        AYT - BTS    CCM\n419         22:30  00:58        BTS - 
+ AYT    CCM\n\nThu, 9 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - - -\nRelease     01:28               AYT\n</pre></BODY
+ ></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nWed\, 8 Jul 2026\n- - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 17:25               AYT\n418         18:43  21:32        AYT - BTS    CCM\
+ n419         22:30  00:58        BTS - AYT    CCM\n\nThu\, 9 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nRelease     
+ 01:28               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2941009-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260709T210000Z
+DTEND:20260710T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nThu, 9 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF.\n
+ </pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nThu\, 9 Jul 2026\n- - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF.\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2941012-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260710T210000Z
+DTEND:20260711T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nFri, 10 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF.\n
+ </pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nFri\, 10 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF.\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2854031-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260712T000000Z
+DTEND:20260712T100000Z
+SUMMARY:STANDBY (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nSun, 12 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    00:00               AYT\nStandby     00
+ :00  10:00        AYT          CCM SB1\nRelease     10:00               AY
+ T\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nSun\, 12 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 00:00               AYT\nStandby     00:00  10:00        AYT          CCM 
+ SB1\nRelease     10:00               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2799971-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260713T040500Z
+DTEND:20260713T161100Z
+SUMMARY:FLY (AYT-NCL-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nMon, 13 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    04:05               AYT\n582         05
+ :24  09:57        AYT - NCL    CCM\n583         11:26  15:41        NCL - 
+ AYT    CCM\nRelease     16:11               AYT\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nMon\, 13 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 04:05               AYT\n582         05:24  09:57        AYT - NCL    CCM\
+ n583         11:26  15:41        NCL - AYT    CCM\nRelease     16:11               
+ AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2800046-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260714T154000Z
+DTEND:20260715T014200Z
+SUMMARY:FLY (AYT-HAJ-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nTue, 14 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    15:40               AYT\n238         17
+ :10  20:50        AYT - HAJ    CCM\n239         21:54  01:12        HAJ - 
+ AYT    CCM\n\nWed, 15 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - - - -\nRelease     01:42               AYT\n</pre></BO
+ DY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nTue\, 14 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 15:40               AYT\n238         17:10  20:50        AYT - HAJ    CCM\
+ n239         21:54  01:12        HAJ - AYT    CCM\n\nWed\, 15 Jul 2026\n- 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nRelease     
+ 01:42               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2919819-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260715T210000Z
+DTEND:20260716T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nWed, 15 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n<
+ /pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nWed\, 15 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2919820-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260716T210000Z
+DTEND:20260717T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nThu, 16 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n<
+ /pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nThu\, 16 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2800574-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260718T134500Z
+DTEND:20260718T201300Z
+SUMMARY:FLY (AYT-DIY-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nSat, 18 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    13:45               AYT\n7712        15
+ :31  17:08        AYT - DIY    CCM\n7713        17:52  19:43        DIY - 
+ AYT    CCM\nRelease     20:13               AYT\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nSat\, 18 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 13:45               AYT\n7712        15:31  17:08        AYT - DIY    CCM\
+ n7713        17:52  19:43        DIY - AYT    CCM\nRelease     20:13               
+ AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2919821-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260718T210000Z
+DTEND:20260719T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nSat, 18 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n<
+ /pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nSat\, 18 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2858108-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260720T140000Z
+DTEND:20260721T001400Z
+SUMMARY:FLY (AYT-STR-EZS)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nMon, 20 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    14:00               AYT\n150         15
+ :22  18:57        AYT - STR    CCM\n1741        20:20  23:44        STR - 
+ EZS    CCM\n\nTue, 21 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - - - -\nRelease     00:14               EZS\n</pre></BO
+ DY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nMon\, 20 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 14:00               AYT\n150         15:22  18:57        AYT - STR    CCM\
+ n1741        20:20  23:44        STR - EZS    CCM\n\nTue\, 21 Jul 2026\n- 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nRelease     
+ 00:14               EZS\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2858108-2
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260721T001400Z
+DTEND:20260721T233000Z
+SUMMARY:NON-FLY (EZS)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nTue, 21 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nTransport   00:14  00:34        EFATUR ELAZIG\n                                
+ Phone: 05343663222\n                                Email: antalya@efatur.
+ com.tr\n                                Booking ID: N/A | Status: NEW\n                                
+ Vehicle type: N/A\nHotel       00:34  23:10        ELAZIG PARK DEDEMAN HOT
+ EL\n                                Address: APINAR,ATATURK BULVARI,NO:41,
+ 23100 MERKEZ/ELAZIG, 23100, EZS, ELAZIG\n                                N
+ /A | Phone: +90 424 233 55 23\n                                Email: begu
+ m.onem@dedeman.com\n                                Booking ID: N/A | Stat
+ us: BOOKED\nTransport   23:10  23:30        EFATUR ELAZIG\n                                
+ Phone: 05343663222\n                                Email: antalya@efatur.
+ com.tr\n                                Booking ID: N/A | Status: NEW\n                                
+ Vehicle type: N/A\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nTue\, 21 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nTransport   
+ 00:14  00:34        EFATUR ELAZIG\n                                Phone: 
+ 05343663222\n                                Email: antalya@efatur.com.tr\
+ n                                Booking ID: N/A | Status: NEW\n                                
+ Vehicle type: N/A\nHotel       00:34  23:10        ELAZIG PARK DEDEMAN HOT
+ EL\n                                Address: APINAR\,ATATURK BULVARI\,NO:4
+ 1\,23100 MERKEZ/ELAZIG\, 23100\, EZS\, ELAZIG\n                                
+ N/A | Phone: +90 424 233 55 23\n                                Email: beg
+ um.onem@dedeman.com\n                                Booking ID: N/A | Sta
+ tus: BOOKED\nTransport   23:10  23:30        EFATUR ELAZIG\n                                
+ Phone: 05343663222\n                                Email: antalya@efatur.
+ com.tr\n                                Booking ID: N/A | Status: NEW\n                                
+ Vehicle type: N/A\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2858108-3
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260721T233000Z
+DTEND:20260722T100300Z
+SUMMARY:FLY (EZS-DUS-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nTue, 21 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    23:30               EZS\n\nWed, 22 Jul 
+ 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\
+ n1334        00:29  04:50        EZS - DUS    CCM\n181         06:03  09:3
+ 3        DUS - AYT    CCM\nRelease     10:03               AYT\n</pre></BO
+ DY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nTue\, 21 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 23:30               EZS\n\nWed\, 22 Jul 2026\n- - - - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - -\n1334        00:29  04:50        E
+ ZS - DUS    CCM\n181         06:03  09:33        DUS - AYT    CCM\nRelease     
+ 10:03               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2912192-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260723T155500Z
+DTEND:20260723T203000Z
+SUMMARY:FLY (AYT-ADB-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nThu, 23 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    15:55               AYT\n7292        17
+ :15  18:21        AYT - ADB    CCM\n7293        18:57  20:00        ADB - 
+ AYT    CCM\nRelease     20:30               AYT\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nThu\, 23 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 15:55               AYT\n7292        17:15  18:21        AYT - ADB    CCM\
+ n7293        18:57  20:00        ADB - AYT    CCM\nRelease     20:30               
+ AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:3112277-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260723T210000Z
+DTEND:20260724T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nThu, 23 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n<
+ /pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nThu\, 23 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:3108445-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260724T210000Z
+DTEND:20260725T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nFri, 24 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          MEDGR\
+ n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nFri\, 24 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          MEDGR\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:3108612-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260725T210000Z
+DTEND:20260726T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nSat, 25 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          MEDGR\
+ n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nSat\, 25 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          MEDGR\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2801495-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260727T030000Z
+DTEND:20260727T123700Z
+SUMMARY:FLY (AYT-SCN-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nMon, 27 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    03:00               AYT\n126         04
+ :26  08:03        AYT - SCN    CCM\n127         08:57  12:07        SCN - 
+ AYT    CCM\nRelease     12:37               AYT\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nMon\, 27 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 03:00               AYT\n126         04:26  08:03        AYT - SCN    CCM\
+ n127         08:57  12:07        SCN - AYT    CCM\nRelease     12:37               
+ AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2801713-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260728T080000Z
+DTEND:20260728T173300Z
+SUMMARY:FLY (AYT-BER-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nTue, 28 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    08:00               AYT\n666         09
+ :40  13:11        AYT - BER    CCM\n667         14:11  17:03        BER - 
+ AYT    CCM\nRelease     17:33               AYT\n</pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nTue\, 28 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 08:00               AYT\n666         09:40  13:11        AYT - BER    CCM\
+ n667         14:11  17:03        BER - AYT    CCM\nRelease     17:33               
+ AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2801750-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260729T164000Z
+DTEND:20260730T015900Z
+SUMMARY:FLY (AYT-NUE-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nWed, 29 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    16:40               AYT\n168         18
+ :19  21:35        AYT - NUE    CCM\n169         22:34  01:29        NUE - 
+ AYT    CCM\n\nThu, 30 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - - - -\nRelease     01:59               AYT\n</pre></BO
+ DY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nWed\, 29 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    
+ 16:40               AYT\n168         18:19  21:35        AYT - NUE    CCM\
+ n169         22:34  01:29        NUE - AYT    CCM\n\nThu\, 30 Jul 2026\n- 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nRelease     
+ 01:59               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:2941008-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260730T210000Z
+DTEND:20260731T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nThu, 30 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF.\n
+ </pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nThu\, 30 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF.\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260811T093435Z
+UID:3019827-1
+TRANSP:OPAQUE
+LOCATION:AYT
+DTSTART:20260731T210000Z
+DTEND:20260801T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Duty\nAll times are in UTC ti
+ me zone\n\nFri, 31 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n<
+ /pre></BODY></HTML>
+DESCRIPTION:Duty\nAll times are in UTC time zone\n\nFri\, 31 Jul 2026\n- - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         
+ 21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+END:VCALENDAR

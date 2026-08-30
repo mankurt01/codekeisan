@@ -1,0 +1,42 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "*.com.keisan.app"
+        ],
+        "components": [
+          {
+            "/": "*",
+            "comment": "Matches all paths for deep linking"
+          },
+          {
+            "/": "/auth/*",
+            "comment": "Matches authentication paths"
+          },
+          {
+            "/": "/login/*",
+            "comment": "Matches login paths"
+          },
+          {
+            "/": "/signin/*", 
+            "comment": "Matches sign-in paths"
+          },
+          {
+            "/": "/reset-password/*",
+            "comment": "Matches password reset paths"
+          },
+          {
+            "/": "/__/auth/*",
+            "comment": "Matches Firebase Auth paths"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "*.com.keisan.app"
+    ]
+  }
+}

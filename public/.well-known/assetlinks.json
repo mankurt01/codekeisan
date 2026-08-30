@@ -1,0 +1,16 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.keisan.app",
+      "sha256_cert_fingerprints": [
+        "AF41A633D541340F9B39A420AF15CA06C36446A24831C6A54446DE8F8EF4B8B9",
+        "AF:41:A6:33:D5:41:34:0F:9B:39:A4:20:AF:15:CA:06:C3:64:46:A2:48:31:0C:6A:54:46:DE:8F:8E:F4:B8:B9"
+      ]
+    }
+  }
+]

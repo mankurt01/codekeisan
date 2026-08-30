@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keisan App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #157ba3 0%, #924a1a 100%);
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .download-links {
+            margin-top: 30px;
+        }
+        .download-links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .download-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Keisan App</h1>
+        <p>Maaş Hesaplama Uygulaması</p>
+        <p>Bu sayfa, Keisan uygulamasının deep link doğrulama dosyalarını barındırmaktadır.</p>
+        
+        <div class="download-links">
+            <a href="#" onclick="window.location.href='app://keisan'">Uygulamayı Aç</a>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
+            Deep link verification files:<br>
+            <a href="/.well-known/assetlinks.json" style="color: #fff;">Android Asset Links</a> | 
+            <a href="/.well-known/apple-app-site-association" style="color: #fff;">iOS App Site Association</a>
+        </p>
+    </div>
+</body>
+</html>

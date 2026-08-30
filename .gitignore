@@ -1,0 +1,127 @@
+# ==============================================================================
+# keisan — .gitignore
+# Repo purpose: iOS (26 SDK) distribution builds via Codemagic.
+# Only iOS is kept: android/ and macos/ are excluded from version control.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Non-iOS platforms — skipped entirely (iOS-only distribution repo)
+# ------------------------------------------------------------------------------
+android/
+macos/
+
+# Android-only artifacts, in case they ever appear outside android/
+*.apk
+*.aab
+*.apks
+*.jks
+*.keystore
+key.properties
+
+# ------------------------------------------------------------------------------
+# Miscellaneous
+# ------------------------------------------------------------------------------
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+**/.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# ------------------------------------------------------------------------------
+# IDE / editor
+# ------------------------------------------------------------------------------
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+devtools_options.yaml
+
+# ------------------------------------------------------------------------------
+# Flutter / Dart / Pub
+# NOTE: pubspec.lock IS committed (app repo — reproducible Codemagic builds).
+# ------------------------------------------------------------------------------
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+.pub-prevent-offline/
+/build/
+/pubspec_overrides.yaml
+app.*.symbols
+app.*.map.json
+
+# ------------------------------------------------------------------------------
+# iOS / Xcode
+# Tracked on purpose (needed by Codemagic):
+#   ios/Podfile, ios/Podfile.lock, ios/Runner.xcodeproj,
+#   ios/Runner.xcworkspace, ios/Flutter/Debug.xcconfig,
+#   ios/Flutter/Release.xcconfig, ios/Runner/Runner.entitlements,
+#   ios/Runner/GoogleService-Info.plist (Firebase needs it at launch).
+# Ignored below: everything that is regenerated locally / on CI.
+# ------------------------------------------------------------------------------
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*sync/
+**/ios/**/.sconsign.dblite
+**/ios/**/.tags*
+**/ios/**/.vagrant/
+**/ios/**/DerivedData/
+**/ios/**/Icon?
+**/ios/**/Pods/
+**/ios/**/.symlinks/
+**/ios/**/profile
+**/ios/**/xcuserdata
+**/ios/.generated/
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.xcframework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+
+# Xcode build output / archives
+**/ios/**/build/
+**/ios/**/*.xcarchive
+*.ipa
+*.dSYM.zip
+
+# ------------------------------------------------------------------------------
+# Firebase / node / tooling caches (firebase.json, firestore.rules and
+# firestore.indexes.json stay tracked)
+# ------------------------------------------------------------------------------
+.firebase/
+node_modules/
+
+# ------------------------------------------------------------------------------
+# Secrets & signing material — never commit.
+# Signing for distribution is handled by Codemagic (keychain + env variables).
+# ------------------------------------------------------------------------------
+*.p12
+*.pem
+*.cer
+*.mobileprovision
+*.provisionprofile
+.env
+.env.*
+*service-account*.json
+serviceAccountKey.json

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keisan - Destek</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #157ba3 0%, #924a1a 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            color: #ED6C02;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            color: #ED6C02;
+            padding: 20px 0;
+            font-size: 1.8em;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid #FFA726;
+            margin-bottom: 20px;
+        }
+
+        .section-header:hover {
+            color: #F57A1A;
+        }
+
+        .section-header .icon {
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        .section-content {
+            display: none;
+        }
+
+        .section.active .section-content {
+            display: block;
+        }
+
+        .section-content h3 {
+            color: #157ba3;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+
+        .section-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .section-content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .section-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section-content li {
+            line-height: 1.6;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning strong {
+            color: #856404;
+        }
+
+        .info {
+            background: rgba(21, 123, 163, 0.1);
+            border-left: 4px solid #157ba3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .legal {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #721c24;
+            font-size: 0.95em;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .contact-info h2 {
+            color: #ED6C02;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .contact-info a {
+            font-size: 1.2em;
+            color: #157ba3;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 25px;
+            background: rgba(21, 123, 163, 0.1);
+            border-radius: 25px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            background: rgba(21, 123, 163, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #ED6C02;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .toggle-icon {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .section.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .version-info {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .app-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .section-header {
+                font-size: 1.5em;
+                padding: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <img src="app-icon.png" alt="Keisan App Icon" class="app-icon">
+                Keisan Destek
+            </h1>
+            <p>Cabin Crew Maaş Hesaplama Uygulaması - Kullanım Kılavuzu</p>
+        </div>
+
+        <!-- Legal Warning -->
+        <div class="section active">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">⚖️</span>
+                <span>Yasal Uyarı</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="legal">
+                    <p><strong>ÖNEMLİ YASAL UYARI:</strong></p>
+                    <p>Bu uygulama, yalnızca kullanıcıya tahmini maaş hesaplamaları sunmak amacıyla hazırlanmıştır. Uygulama, herhangi bir resmi kurum, kuruluş veya şirket ile doğrudan ya da dolaylı olarak bağlantılı değildir, bu kurumlar tarafından onaylanmamış veya desteklenmemiştir.</p>
+                    <p>Yapılan hesaplamalar yaklaşık değerler olup, çeşitli varsayımlar ve genel bilgiler temel alınarak oluşturulmuştur. Bu nedenle uygulama tarafından sağlanan bilgiler, kesin ve bağlayıcı sonuçlar içermez.</p>
+                    <p><strong>Kullanıcılar, bu uygulamada sunulan verileri resmi işlemler, finansal planlama, iş sözleşmeleri veya herhangi bir hukuki karar için dayanak olarak kullanmamalıdır.</strong> Gerçek maaş tutarları ve diğer resmi bilgiler için ilgili kurum veya uzmanlardan doğrudan bilgi alınması tavsiye edilir.</p>
+                    <p>Uygulama geliştiricisi, bu uygulamada sunulan bilgilerin kullanımından doğabilecek doğrudan veya dolaylı herhangi bir zarar veya kayıptan sorumlu tutulamaz.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PDF Upload and Analysis -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">📋</span>
+                <span>1. Roster Yükleme ve Analiz</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <h3>📋 PDF Analiz Nasıl Kullanılır?</h3>
+                <ol class="step-list">
+                    <li>"PDF'ini Seç" butonuna tıklayarak roster PDF dosyanızı seçin</li>
+                    <li>"Analizi Tamamla" butonuna tıklayarak dosyayı analiz edin</li>
+                    <li>Sonuçları gözden geçirin ve "Hesapla" butonuna tıklayın</li>
+                </ol>
+
+                <div class="warning">
+                    <strong>ÖNEMLİ:</strong> PDF dosyasını kaydederken seçtiğiniz tarihler ayın ilk ve son günü olmalıdır. Örneğin Ocak ayı için "01Jan25-31Jan25" formatında olmalıdır. Farklı tarihlerdeki kayıtlar istatistiklerde hataya yol açacaktır.
+                </div>
+
+                <h3>✅ Analiz Edilen Veriler</h3>
+                <ul>
+                    <li>Toplam uçuş süresi</li>
+                    <li>Toplam görev süresi</li>
+                    <li>Gece saatleri (22:00-03:00)</li>
+                    <li>Multi-sektör uçuşları (3, 4, 5 sektör)</li>
+                    <li>Yatı (layover) sayısı</li>
+                    <li>Off duty günleri</li>
+                </ul>
+
+                <h3>⚠️ Önemli Notlar</h3>
+                <ul>
+                    <li>PDF dosyası sadece size ait olmalıdır</li>
+                    <li>İlk kez kullanımda kullanıcı kimliği otomatik kaydedilir</li>
+                    <li>Farklı kişiye ait PDF yüklenemez</li>
+                    <li><strong>Dış hat yatınız varsa mutlaka "Hesapla" bölümünden girmelisiniz</strong>, aksi takdirde tüm yatılarınız "İç Hat Yatı" olarak kabul edilecektir</li>
+                </ul>
+
+                <p>Ana ekrandan "Roster Yükle" butonuna tıklayın ve PDF formatındaki roster dosyanızı seçin. Menüde beliren "Analizi Tamamla" butonuna basın. Roster özetiniz karşınızda belirecektir, isterseniz "Kaydet" butonu ile "Roster Dökümleri"ne kaydedilmesini sağlayabilirsiniz.</p>
+                
+                <div class="info">
+                    <strong>Not:</strong> Henüz bu sayfadaki "Hesapla" butonunu kullanmazsınız. Bu buton base maaşınız ve euro kurunu belirledikten sonra aktif olacaktır.
+                </div>
+            </div>
+        </div>
+
+        <!-- Salary Information Entry -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">💰</span>
+                <span>2. Maaş Bilgileri Girişi</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <h3>⚙️ Base Maaş Belirleme</h3>
+                <p>"Base Maaş Belirlemek İçin Tıklayınız" butonuna tıklayarak:</p>
+                <ul>
+                    <li>Pozisyonunuzu seçin (CCM/SCCM)</li>
+                    <li>Deneyim yılınızı girin</li>
+                    <li>Otomatik maaş hesaplaması yapılır</li>
+                    <li>Güncel euro kuru otomatik alınır</li>
+                </ul>
+
+                <h3>📝 Bilgi Girişi</h3>
+                <p>"Hesapla" bölümünde:</p>
+                <ul>
+                    <li><strong>6. Gün Uçuş Adedi:</strong> Aylık 6. gün uçuş sayısı</li>
+                    <li><strong>Dış Hat Yatı:</strong> Uluslararası yatı sayısı</li>
+                    <li><strong>Euro Kuru:</strong> Güncel TL/EUR kuru</li>
+                    <li><strong>İç Hat Yatı Düzenle:</strong> Yerel yatı düzeltmesi</li>
+                </ul>
+
+                <p>Önce base maaşınızı en üstte bulunan buton ile belirleyiniz. Sistem otomatik olarak taban maaşınızı hesaplayacaktır.</p>
+
+                <h3>📅 Roster Seçimi</h3>
+                <ul>
+                    <li>"Dönem Seçiniz" butonuna tıklayın</li>
+                    <li>Analiz edilmiş roster dönemlerinden birini seçin</li>
+                    <li>Roster verisi otomatik olarak yüklenir</li>
+                    <li>Komisyon bilgileri dahil edilir</li>
+                </ul>
+
+                <div class="warning">
+                    <strong>Önemli Notlar:</strong>
+                    <ul>
+                        <li>Önceki tarihlere ait hesap yapmak istiyorsanız dönem seçimi yapın ve hesapla butonuna basın</li>
+                        <li>Euro kurunu güncelleyin</li>
+                        <li>6. gün uçuşları programınızda belirtilmiş olsa da uygulama bunu hesaba katmayacaktır. Manuel olarak kaç gün olduğunu girmeniz gereklidir</li>
+                        <li>Programınızda şayet dış hat yatınız varsa uygulama bunu algılamayacaktır. Belirlenen tüm yatıları iç hat yatısı olarak hesaplayacaktır. Dış hat yatınız bulunması halinde lütfen kaç gün olduğu "Dış Hat Yatı Giriniz" kısmından ekleyiniz</li>
+                    </ul>
+                </div>
+
+                <h3>🔧 İç Hat Yatı Düzeltmesi</h3>
+                <p>İç hat yatı düzeltmesi toplam yatı sayınızın yanlış hesaplandığında düzeltme amaçlı eklenmiştir. Örnek olarak 10 gün yatınız olan programınızda, şayet uygulama 9 gün olarak hesaplamışsa düzeltme kısmına "1" yazmanız halinde, uygulama 10 güne tamamlayacaktır.</p>
+                
+                <div class="info">
+                    <strong>Not:</strong> Yatı hesaplamaları geliştirme sürecindedir. Yarım günlük hakedişler henüz hesaplanamamaktadır. Aynı şekilde "-1" ekleyerek doğru sayıya ulaşabilirsiniz.
+                </div>
+            </div>
+        </div>
+
+        <!-- Commission Operations -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">💼</span>
+                <span>3. Komisyon İşlemleri</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <h3>📅 Takvim Kullanımı</h3>
+                <ul>
+                    <li>Ay değiştirmek için sol/sağ okları kullanın</li>
+                    <li>Sadece bugün ve geçmiş tarihlere komisyon girilebilir</li>
+                    <li>Turuncu renkli günler komisyon girilmiş günlerdir</li>
+                    <li>Mavi renk bugünü gösterir</li>
+                </ul>
+
+                <h3>💰 Komisyon Girişi</h3>
+                <p>Komisyonlar bölümünde:</p>
+                <ul>
+                    <li>Yeni komisyon ekleyebilirsiniz. "Komisyon Giriniz" kısmından takvim üzerine tıklayarak tutar girdikten sonra, şayet 5 kişi iseniz 5 kişi kutucuğunu işaretleyiniz</li>
+                    <li>Miktar girin (Euro € veya Türk Lirası ₺)</li>
+                    <li><strong>"5 Kişi" seçeneği:</strong> %2 komisyon (aksi halde %2.5)</li>
+                    <li><strong>"İç Hat" seçeneği:</strong> Türk Lirası cinsinden işlem</li>
+                    <li>Ondalık ayracı için "." veya "," kullanabilirsiniz</li>
+                </ul>
+
+                <h3>⚙️ Komisyon Hesaplama</h3>
+                <ul>
+                    <li><strong>Normal:</strong> Miktar × %2.5</li>
+                    <li><strong>5 Kişi ile:</strong> Miktar × %2.0</li>
+                    <li><strong>İç Hat:</strong> Türk Lirası olarak işlenir</li>
+                    <li><strong>Dış Hat:</strong> Euro olarak işlenir</li>
+                </ul>
+
+                <p>"İç Hat Uçuşları" için komisyon girişi yapıyorsanız, 5 kişi kutucuğunun altındaki "İç Hat Uçuşları" seçeneğini işaretleyiniz. İç hat komisyonları TL maaşınız hesaplandıktan sonra TL maaşınıza eklenir.</p>
+
+                <h3>📊 Görüntüleme ve Yönetim</h3>
+                <ul>
+                    <li>Sağ üstteki grafik simgesine tıklayarak tabloyu görün</li>
+                    <li>Aylık toplamları ve detayları inceleyin</li>
+                    <li>Girişlerinizi düzenleyebilir veya silebilirsiniz</li>
+                    <li>İstediğiniz herhangi bir aydaki olması gereken komisyon tutarının yaptığınız girdilere göre ne kadar olması gerektiğini dönem komisyonları sayfasında en üst kısımda "Dönem Seçiniz"e tıklayarak öğrenebilirsiniz</li>
+                </ul>
+
+                <div class="info">
+                    <strong>Düzeltme İpucu:</strong> Takvim üzerinden yanlış giriş yapıldığında, tekrar aynı güne tıklayıp doğru miktarı girerek düzeltme yapabilirsiniz. Silmek isterseniz "0" girerek komisyonu sıfırlayabilirsiniz.
+                </div>
+
+                <p>"Girdi Geçmişi" sayfasında seçtiğiniz ay içinde girmiş olduğunuz komisyonları görüntüleyebilirsiniz.</p>
+                
+                <div class="warning">
+                    <strong>ÖNEMLİ:</strong> Hesaplama kısmında seçilen roster dönemi için o döneme ait komisyon toplamı otomatik olarak hesaplamaya dahil edilir.
+                </div>
+            </div>
+        </div>
+
+        <!-- Historical Records -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">📚</span>
+                <span>4. Geçmiş Kayıtlar</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p>Uygulama üç farklı geçmiş kaydı tutar:</p>
+
+                <h3>📅 Roster Geçmişi</h3>
+                <p>Her dönem için PDF analiz sonuçları</p>
+
+                <h3>💰 Komisyon Geçmişi</h3>
+                <p>Tarih bazlı komisyon kayıtları</p>
+
+                <h3>💵 Maaş Geçmişi</h3>
+                <p>Dönem bazlı maaş kayıtları</p>
+
+                <p>Bu kayıtlara ilgili menülerden ulaşabilir, görüntüleyebilir ve karşılaştırma yapabilirsiniz.</p>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">📊</span>
+                <span>5. İstatistikler</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p>İstatistikler, her roster dönemi için tarih olarak en son kaydedilen roster bilgileri kullanılarak oluşturulur:</p>
+
+                <div class="warning">
+                    <strong>Önemli:</strong> Şayet roster periyotlarında herhangi ay için gün olarak farklı tarihlerde roster bilgileri varsa uygulama iki farklı roster olarak algılayıp istatistiklerde iki kez görünmesine sebep olacaktır.
+                    <br><br>
+                    Örneğin 28Jun25-31Jul25 ve 01Jul25-31Jul25 tarihleri için iki farklı roster kaydı analiz etmişseniz, istatistikler bunu iki farklı kayıt olarak oluşturacaktır. İstemediğiniz kaydı "Roster Dökümleri ve Geçmiş Maaşlarım" sayfasından silerek düzeltebilirsiniz.
+                </div>
+
+                <h3>⚙️ Tablo Yönetimi</h3>
+                <ul>
+                    <li>"Tablo Seçenekleri" menüsünden tabloda görünmesini istediğiniz veya istemediğiniz alanları seçebilirsiniz</li>
+                    <li>Tablonuzu istediğiniz gibi şekillendirtikten sonra en altta bulunan "Tabloyu Excel Olarak İndir" butonuna tıklayarak dışa aktarabilirsiniz</li>
+                </ul>
+
+                <h3>📈 Maaş İstatistikleri</h3>
+                <p>Dönem bazlı maaş kayıtları</p>
+
+                <p>Bu kayıtlara ilgili menülerden ulaşabilir, görüntüleyebilir ve karşılaştırma yapabilirsiniz.</p>
+            </div>
+        </div>
+
+        <!-- Device Management -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">📱</span>
+                <span>6. Cihaz Yönetimi</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p>Uygulama güvenliği için:</p>
+
+                <ul>
+                    <li>Her e-posta adresi yalnızca tek bir cihazda kullanılabilir</li>
+                    <li>Farklı bir cihazda hesabınızı kullanmak istiyorsanız, önce mevcut cihaz kaydınızı silmeniz gerekir</li>
+                    <li>Cihaz kaydınızı yönetmek için Profil sayfasındaki "Cihaz Yönetimi" butonunu kullanabilirsiniz</li>
+                    <li>Cihaz kaydını sildiğinizde, uygulamadan otomatik olarak çıkış yaparsınız</li>
+                </ul>
+
+                <div class="info">
+                    <strong>Güvenlik:</strong> Bu güvenlik önlemi, hesabınızın izinsiz kullanımını engellemeye yardımcı olur.
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Backup and Restore -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">💾</span>
+                <span>7. Veri Yedekleme ve Geri Yükleme</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p>Uygulamayı kaldırdığınızda verilerinizi kaybetmemek için:</p>
+
+                <h3>📥 Yedekleme İşlemi</h3>
+                <ul>
+                    <li>Aşağıdaki "Veri Yedekleme" bölümünden verilerinizi yedekleyebilirsiniz</li>
+                    <li>Tüm verileriniz (roster geçmişi, maaş hesaplamaları, komisyonlar) tek dosyada yedeklenir</li>
+                    <li>Yedekleme dosyasını güvenli bir yerde saklayın (Google Drive, iCloud vb.)</li>
+                    <li>Uygulamayı yeniden yükledikten sonra yedekleme dosyanızını geri yükleyebilirsiniz</li>
+                </ul>
+
+                <h3>📤 Geri Yükleme</h3>
+                <p>Uygulama içinden "Yedekten Geri Yükle" seçeneğini kullanarak kayıtlı verilerinizi geri yükleyebilirsiniz.</p>
+
+                <h3>💡 Öneriler</h3>
+                <ul>
+                    <li>Düzenli olarak yedekleme yapın</li>
+                    <li>Uygulama güncellemelerinden önce yedek alın</li>
+                    <li>Yedekleme dosyalarını tarih ile adlandırın</li>
+                    <li>Yedekleme dosyalarını Google Drive, iCloud veya başka bir bulut depolama hizmetinde saklayarak güvenliğini sağlayın</li>
+                </ul>
+
+                <h3>🗂️ Ayrı Dosya Dışa Aktarımları</h3>
+                <p>Ayrıca aşağıdaki verileri ayrı dosyalar halinde de dışa aktarabilirsiniz:</p>
+                <ul>
+                    <li><strong>Maaş Geçmişi:</strong> Tüm maaş hesaplama kayıtları</li>
+                    <li><strong>Komisyonlar:</strong> Komisyon giriş geçmişi</li>
+                    <li><strong>Roster Geçmişi:</strong> PDF analiz sonuçları</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Calculation Process -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">🔢</span>
+                <span>8. Hesaplama Süreci</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <h3>🔢 Adım Adım Hesaplama</h3>
+                <ol class="step-list">
+                    <li>Tüm bilgileri doldurun</li>
+                    <li>"Hesapla" butonuna tıklayın</li>
+                    <li>Detaylı maaş dökümü görüntülenir</li>
+                    <li>Sonuç geçmiş maaşlarınıza kaydedilir</li>
+                </ol>
+
+                <div class="info">
+                    <strong>Hesaplama Bileşenleri:</strong>
+                    <ul>
+                        <li>Base maaş (pozisyona göre)</li>
+                        <li>Görev saati ödemeleri</li>
+                        <li>Gece saati ödemeleri</li>
+                        <li>Multi-sektör ödemeleri</li>
+                        <li>Yatı ödemeleri (iç/dış hat)</li>
+                        <li>Komisyon ödemeleri</li>
+                        <li>6. gün uçuş ödemeleri</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="icon">❓</span>
+                <span>Sık Sorulan Sorular</span>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <h3>❓ SCCM ve CCM arasındaki fark nedir?</h3>
+                <p>SCCM (Senior Cabin Crew Member) ve CCM (Cabin Crew Member) farklı pozisyonlardır ve maaş hesaplamalarında farklı katsayılar kullanılır. Pozisyonunuzu base maaş belirleme ekranından seçebilirsiniz.</p>
+
+                <h3>❓ PDF roster dosyam neden yüklenmiyor?</h3>
+                <p>PDF dosyanızın sadece size ait olması gerekir. İlk yükleme sırasında kullanıcı kimliği otomatik olarak kaydedilir ve sonraki yüklemeler bu kimlikle kontrol edilir.</p>
+
+                <h3>❓ Layover hesaplamaları doğru mu?</h3>
+                <p>Yatı hesaplamaları geliştirme sürecindedir. Dış hat yatılarınızı manuel olarak girmeniz, iç hat yatı düzeltmesi yapmanız gerekebilir.</p>
+
+                <h3>❓ Komisyon nasıl hesaplanır?</h3>
+                <p>Normal uçuşlar için %2.5, 5 kişi ile yapılan uçuşlar için %2.0 komisyon oranı uygulanır. İç hat komisyonları TL cinsinden, dış hat komisyonları Euro cinsinden hesaplanır.</p>
+
+                <h3>❓ Verilerimi nasıl yedekleyebilirim?</h3>
+                <p>Kullanım kılavuzundaki "Veri Yedekleme" bölümünden tüm verilerinizi tek dosyada yedekleyebilir veya ayrı ayrı dışa aktarabilirsiniz.</p>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h2>İletişim</h2>
+            <p>Gizlilik politikası ile ilgili sorularınız için bizimle iletişime geçin:</p>
+            <a href="mailto:mankurt.keisan@gmail.com">
+                mankurt.keisan@gmail.com
+            </a>
+            <p style="margin-top: 15px;">Gizlilik Politikası: <a href="privacy-policy.html" style="color: #157ba3; text-decoration: underline;">Buraya Tıklayın</a></p>
+        </div>
+
+        <div class="version-info">
+            <p><strong>Keisan App</strong> - Versiyon 1.0.0</p>
+            <p>© 2024 - Tüm hakları saklıdır</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(element) {
+            const section = element.parentElement;
+            const isActive = section.classList.contains('active');
+            
+            // Close all sections
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            
+            // Open clicked section if it wasn't active
+            if (!isActive) {
+                section.classList.add('active');
+            }
+        }
+
+        // Open first section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section');
+            if (firstSection) {
+                firstSection.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

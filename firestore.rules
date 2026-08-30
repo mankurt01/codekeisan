@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Exempt a specific email from all rules
+    function isSuperUser() {
+      return request.auth != null && request.auth.token.email == 'keisandummy@gmail.com';
+    }
+
+    // Helper function to check if user is approved
+    function isUserApproved() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/user_registrations/$(request.auth.token.email)) &&
+             get(/databases/$(database)/documents/user_registrations/$(request.auth.token.email)).data.isApproved == true;
+    }
+
+    // User registrations collection - maps email to app ID and approval status
+    // Document ID is the email address
+    match /user_registrations/{email} {
+      // Allow read for authenticated users accessing their own registration or superuser
+      allow read: if isSuperUser() || (
+        request.auth != null && request.auth.token.email == email
+      );
+
+      // Allow create if user is authenticated and creating their own registration
+      allow create: if isSuperUser() || (
+        request.auth != null &&
+        email == request.auth.token.email &&
+        request.resource.data.email == request.auth.token.email &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.keys().hasAll(['email', 'userId', 'appId', 'registeredAt', 'lastUsedAt', 'isApproved']) &&
+        // Ensure isApproved is false by default (only superuser can set it to true)
+        (request.resource.data.isApproved == false || isSuperUser())
+      );
+
+      // Allow update for timestamp updates by owner, or approval by superuser
+      allow update: if isSuperUser() || (
+        request.auth != null &&
+        email == request.auth.token.email &&
+        resource.data.email == request.auth.token.email &&
+        // Only allow updating lastUsedAt by regular users
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastUsedAt'])
+      );
+
+      // Allow delete only by super user
+      allow delete: if isSuperUser();
+    }
+    
+    // User metadata collection - only accessible by approved users
+    match /user_metadata/{userId} {
+      // Allow read/write if authenticated and approved, or superuser
+      allow read, write: if isSuperUser() || (
+        request.auth != null && 
+        request.auth.uid == userId &&
+        isUserApproved()
+      );
+    }
+
+    // All other data collections - only accessible by approved users or superuser
+    match /{document=**} {
+      allow read, write: if isSuperUser() || isUserApproved();
+    }
+  }
+}
