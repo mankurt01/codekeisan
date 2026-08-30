@@ -1,7 +1,7 @@
 name: keisan
 description: "A new way of ease."
 publish_to: 'none'
-version: 0.2.4+1
+version: 0.2.5+2
 
 environment:
   sdk: '>=3.9.0-0 <4.0.0'
