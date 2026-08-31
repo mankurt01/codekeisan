@@ -609,15 +609,33 @@ class _PdfUploadScreenState extends State<PdfUploadScreen>
     // Determine roster period
     final firstDate = schedule.first.date;
     // ... rest of header logic ...
-     final lastDate = schedule.last.date;
-    final monthNames = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+     final monthNames = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    final rosterPeriod = '${firstDate.day.toString().padLeft(2, '0')}'
-        '${monthNames[firstDate.month]}'
-        '${firstDate.year.toString().substring(2)}-'
-        '${lastDate.day.toString().padLeft(2, '0')}'
-        '${monthNames[lastDate.month]}'
-        '${lastDate.year.toString().substring(2)}';
+
+    // The roster period is named after the calendar month that holds the
+    // majority of the schedule days. Even when the actual duty days spill over
+    // from the previous month or into the next one (e.g. 31 Jul - 30 Aug), the
+    // period is normalized to the full first-to-last day of that month so the
+    // naming stays stable regardless of the exact first/last duty date.
+    final Map<String, int> monthCounts = {};
+    for (final day in schedule) {
+      final key = '${day.date.year}-${day.date.month}';
+      monthCounts[key] = (monthCounts[key] ?? 0) + 1;
+    }
+    final dominantKey = monthCounts.entries
+        .reduce((a, b) => a.value >= b.value ? a : b)
+        .key;
+    final dominantParts = dominantKey.split('-');
+    final dominantYear = int.parse(dominantParts[0]);
+    final dominantMonth = int.parse(dominantParts[1]);
+    final daysInMonth = DateTime(dominantYear, dominantMonth + 1, 0).day;
+
+    final rosterPeriod = '01'
+        '${monthNames[dominantMonth]}'
+        '${dominantYear.toString().substring(2)}-'
+        '${daysInMonth.toString().padLeft(2, '0')}'
+        '${monthNames[dominantMonth]}'
+        '${dominantYear.toString().substring(2)}';
         
     int count3 = 0;
     int count4 = 0;

@@ -210,10 +210,6 @@ class SalaryBreakdownCard extends StatelessWidget {
     buffer.writeln('   ├─ Yurtiçi (${components['domestic_overnight_count']?.toInt()} gece): €${components['domestic_overnight_pay']?.toStringAsFixed(2)}');
     buffer.writeln('   └─ Yurtdışı (${components['international_overnight_count']?.toInt()} gece): €${components['international_overnight_pay']?.toStringAsFixed(2)}\n');
     
-    if (components['duzeltme'] != 0) {
-      buffer.writeln('📝 Yatı Düzeltme: ${components['duzeltme']?.toInt()} gece');
-      buffer.writeln('   └─ Toplam Yatı: ${components['adjusted_layovers']?.toInt()} gece\n');
-    }
     
     // Total summary
     buffer.writeln('💶 Toplam Özet');

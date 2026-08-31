@@ -148,10 +148,9 @@ class CalculationService {
     final regularDutyHours = dutyHours.clamp(0, 100);
     final overtimeHours = dutyHours > 100 ? dutyHours - 100 : 0;
 
-    // Get the overnight values and ensure they're numbers
+    // Get the overnight value and ensure it's a number
     final internationalOvernight =
         (baseSalaryData['internationalOvernight'] ?? 0) as num;
-    final duzeltme = (baseSalaryData['duzeltme'] ?? 0) as num;
 
     // Calculate the components
     final components = <String, double>{
@@ -167,18 +166,14 @@ class CalculationService {
       'off_duty_pay': offDutyCounts * (rates['offDuty'] ?? 0.0),
       'night_hours_pay': nightHours * (rates['nightHour'] ?? 0.0),
 
-      // Store layover counts for reference
+      // Store layover count for reference
       'total_layovers': layoverCount.toDouble(),
-      'raw_layovers': layoverCount.toDouble(),
-      'duzeltme': duzeltme.toDouble(),
-      'adjusted_layovers': (layoverCount + duzeltme.toInt()).toDouble(),
 
       // Calculate overnight pay components
       'domestic_overnight_count':
-          ((layoverCount + duzeltme.toInt()) - internationalOvernight)
-              .toDouble(),
+          (layoverCount - internationalOvernight).toDouble(),
       'domestic_overnight_pay':
-          ((layoverCount + duzeltme.toInt()) - internationalOvernight) *
+          (layoverCount - internationalOvernight) *
               SalaryRates.domesticOvernightRate,
       'international_overnight_pay':
           internationalOvernight * SalaryRates.internationalOvernightRate,

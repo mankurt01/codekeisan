@@ -380,7 +380,6 @@ class DataImportService {
         sixthDay: (baseSalaryData['sixthDay'] as num?)?.toInt() ?? 0,
         internationalOvernight: (baseSalaryData['internationalOvernight'] as num?)?.toInt() ?? 0,
         euroRate: (baseSalaryData['euroRate'] as num?)?.toDouble() ?? 0.0,
-        duzeltme: (baseSalaryData['duzeltme'] as num?)?.toDouble() ?? 0.0,
         employmentType: baseSalaryData['employmentType'] as String?,
         partTimeType: baseSalaryData['partTimeType'] as String?,
         yearsOfService: baseSalaryData['yearsOfService'] as String?,

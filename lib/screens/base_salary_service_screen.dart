@@ -111,7 +111,6 @@ class _BaseSalaryServiceScreenState extends State<BaseSalaryServiceScreen> {
         'euroRate': currentData?['euroRate'] ?? 0.0,
         'sixthDay': currentData?['sixthDay'] ?? 0,
         'internationalOvernight': currentData?['internationalOvernight'] ?? 0,
-        'duzeltme': (currentData?['duzeltme'] as num?)?.toDouble() ?? 0.0,
       };
 
       // Save all data in one operation
@@ -120,7 +119,6 @@ class _BaseSalaryServiceScreenState extends State<BaseSalaryServiceScreen> {
         euroRate: updatedData['euroRate'] as double,
         sixthDay: updatedData['sixthDay'] as int,
         internationalOvernight: updatedData['internationalOvernight'] as int,
-        duzeltme: updatedData['duzeltme'] as double,
         employmentType: _employmentType,
         partTimeType: _partTimeType,
         yearsOfService: _yearsOfService,

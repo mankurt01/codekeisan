@@ -72,23 +72,20 @@ class _HelpScreenState extends State<HelpScreen> {
       {
         'title': '1. Roster Yükleme ve Analiz',
         'description':
-            'Ana ekrandan "Roster Yükle" butonuna tıklayın ve PDF formatındaki roster dosyanızı seçin.\n\n'
+            'Ana ekrandan "Roster Yükle" butonuna tıklayın ve ICS formatındaki roster dosyanızı seçin.\n\n'
             '• Menüde beliren "Analizi Tamamla" butonuna basın\n'
-            '• Roster özetiniz karşınıda belirecektir, isterseniz "Kaydet" butonu ile "Roster Dökümleri" ne kaydedilmesini sağlayabilirsiniz.\n'
-            '• Henüz bu sayfadaki "Hesapla" butonunu kullanmazsınız. Bu buton base maaşınız ve euro kurunu belirledikten sonra aktif olacaktır.\n',
+            '• Roster özetiniz karşınıda belirecektir, "Roster Dökümleri" nde geçmişe dönük roster kayıtlarınızı görebilirsiniz.\n'
       },
       {
         'title': '2. Maaş Bilgileri Girişi',
         'description':
             '"Hesapla" bölümünde:\n\n'
             '• Önce base maaşınızı en üstte bulunan buton ile belirleyiniz.\n'
-            'Sistem otomatik olarak taban maaşınızı hesaplayacaktır.\n\n'
+            'Sistem otomatik olarak taban maaşınızı hesaplayacaktır. Bu işlemi bir kez gerçekleştirmeniz yeterlidir.\n\n'
             'Ayrıca:\n'
             '• Önceki tarihlere ait hesap yapmak istiyorsanız dönem seçimi yapın ve hesapla butununa basın.\n'
             '• Euro kurunu güncelleyin\n'
-            '• 6. gün uçuşları programınızda belirtilmiş olsada uygulama bunu hesaba katmayacaktır. Manuel olarak kaç gün olduğunu girmeniz gereklidir.\n'
-            '• Programınızda şayet dış hat yatınız varsa uygulama bunu algılamayacaktır. Belirlenen tüm yatıları iç hat yatısı olarak hesaplayacaktır. Dış hat yatınız bulunması halinde lütfen kaç gün olduğu "Dış Hat Yatı Giriniz" kısmından ekleyiniz. \n'
-            '• İç hat yatı düzeltmesi toplam yatı sayınızın yanlış hesapladığında düzeltme amaçlı eklenmiştir. Örnek olarak 10 gün yatınız olan programınızda, şayet uygulama 9 gün olarak hesaplamışsa düzeltme kısmına "1" yazmanız halinde, uygulama 10 güne tamamlayacaktır.(NOT: Yatı hesaplamaları geliştirme sürecindedir. Yarım günlük hakedişler henüz hesaplanamamaktadır) Aynı şekilde "-1" ekleyerek doğru sayıya ulaşabilirsiniz. \n',
+            '• 6. gün uçuşları programınızda belirtilmiş olsada uygulama bunu hesaba katmayacaktır. Manuel olarak kaç gün olduğunu girmeniz gereklidir. Aynı durum "off duty" günleri için de geçerlidir.\n'
       },
       {
         'title': '3. Komisyon İşlemleri',
@@ -100,6 +97,20 @@ class _HelpScreenState extends State<HelpScreen> {
             '• "Takvim üzerinden yanlış giriş yapıldığında, tekrar aynı güne tıklayıp doğru miktarı girerek düzeltme yapabilirsiniz. Silmek isterseniz "0" girerek komisyonu sıfırlayabilirsiniz.\n'
             '• "Girdi Geçmişi" sayfasında seçtiğiniz ay içinde girmiş olduğunuz komisyonları görüntüleyebilirsiniz.\n'
             'ÖNEMLİ: Hesaplama kısmında seçilen roster dönemi için o döneme ait komisyon toplamı otomatik olarak hesaplamaya dahil edilir.\n',
+      },
+      {
+        'title': '4. Roster Takvimi',
+        'description':
+            '"Roster Takvimi" ekranı, yükleyip kaydettiğiniz roster\'daki etkinlikleri takvim formatında gösterir. Veriler, roster dosyanızdaki ICS/analiz verilerinden otomatik olarak oluşturulur.\n\n'
+            'Takvimin üzerinde bulunan özet şeridinde o ay için:\n'
+            '• ✈️ FLY: Uçuş günü sayısı\n'
+            '• 🟡 SB: Stand-by günü sayısı\n'
+            '• 🟢 OFF: İzin (off) günü sayısı\n'
+            '• ⏱️ DUTY: Toplam görev/fiili mesai süresi\n\n'
+            '• Bir güne dokunarak o günün etkinliklerini detaylı görebilirsiniz (check-in, uçuş bacakları, release).\n'
+            '• Layover (konaklamalı) uçuşlarda otel, transfer ve ödeme tutarı (€) bilgileri ayrı bir kart olarak gösterilir.\n'
+            '• Üstteki oklarla ay, format butonlarıyla hafta/ay görünümü arasında geçiş yapabilirsiniz.\n'
+            '• Takvimin boş görünmesi halinde önce "Roster Yükle" menüsünden bir roster analiz edip kaydetmeniz gerekir.\n',
       },
       {
         'title': '5. Geçmiş Kayıtlar',
@@ -130,6 +141,7 @@ class _HelpScreenState extends State<HelpScreen> {
             '• Uygulama numaranız yukarıda "Uygulama Numarası (User ID)" bölümünde görüntülenir.\n'
             '• Farklı bir cihazda aynı hesapla giriş yapmak için önce mevcut uygulama kaydınızı silmeniz gerekir.\n'
             '• Uygulama kaydınızı yönetmek için Profil sayfasındaki "Uygulama Yönetimi" butonunu kullanabilirsiniz.\n'
+            '• Uygulama içerindeki her türlü işlenen bilgi telefonunuzda saklanır ve üçüncü taraflarla paylaşılmaz. Admin veya herhangi bir kurumun bu bilgilere kesinlikle erişimi yoktur!\n'
             '• Uygulama kaydını sildiğinizde, uygulamadan otomatik olarak çıkış yaparsınız.\n\n'
             'Bu güvenlik önlemi, hesabınızın izinsiz kullanımını engellemeye yardımcı olur.',
       },

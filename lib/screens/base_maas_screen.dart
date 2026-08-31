@@ -32,9 +32,8 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
   final List<(String, String)> fields = [
     ('Base Maaş (€)', 'base_maas'),
     ('6. Gün Uçuş Adedi', 'alti_gun'),
-    ('Dış Hat Yatı Giriniz', 'dis_hat_yati'),
+    ('Off to Duty', 'off_duty'),
     ('Euro Kuru (₺)', 'euro_rate'),
-    ('İç Hat Yatı Düzenle', 'duzeltme'),
   ];
 
   Future<void> _loadSavedRole() async {
@@ -60,9 +59,8 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
     controllers = {
       'base_maas': TextEditingController(),
       'alti_gun': TextEditingController(),
-      'dis_hat_yati': TextEditingController(),
+      'off_duty': TextEditingController(),
       'euro_rate': TextEditingController(),
-      'duzeltme': TextEditingController(),
     };
     loadSavedData();
     _loadInitialData();
@@ -85,6 +83,7 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
       );
       final baseSalaryData = await dataService.getBaseSalaryData();
       int localLayoverCount = 0;
+      int internationalOvernightCount = 0;
 
       // Load fixes for selected roster period
       Map<String, dynamic> periodFixes = {};
@@ -93,6 +92,10 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
       }
 
       if (!mounted) return;
+
+      // Parsed roster provides no off-duty count, so load the saved value to
+      // use as the fallback when a parsed count is absent
+      final savedOffDuty = await dataService.getOffDutyCounts();
 
       setState(() {
         commission = currentCommission;
@@ -114,28 +117,34 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
           if (layoverData is Map) {
             localLayoverCount = (layoverData['domestic'] as int? ?? 0) + 
                               (layoverData['international'] as int? ?? 0);
+            internationalOvernightCount =
+                layoverData['international'] as int? ?? 0;
           } else if (layoverData is int) {
             localLayoverCount = layoverData;
+            internationalOvernightCount =
+                (baseSalaryData?['internationalOvernight'] as num? ?? 0).toInt();
           } else {
             localLayoverCount = 0;
           }
           layoverCount = localLayoverCount;
-
-          offDutyCounts = pdfResult.data['offDutyCounts'] as int? ?? 0;
         }
 
-        // Load fixes for this period if available
-        controllers['dis_hat_yati']?.text =
-            periodFixes['dis_hat_yati']?.toString() ?? '0';
-        controllers['duzeltme']?.text =
-            periodFixes['duzeltme']?.toString() ?? '0';
+        // Load fixes for this period if available. The off-duty count follows
+        // the same rules as the 6. Gün field: a per-roster override takes
+        // precedence, falling back to the saved global value.
         controllers['alti_gun']?.text =
             periodFixes['alti_gun']?.toString() ?? '0';
+        controllers['off_duty']?.text =
+            periodFixes['off_duty']?.toString() ?? savedOffDuty.toString();
+        offDutyCounts = safeIntConvert(controllers['off_duty']!.text);
       });
 
       if (pdfResult != null) {
         final internationalOvernights =
-            (baseSalaryData?['internationalOvernight'] as num? ?? 0).toInt();
+            internationalOvernightCount > 0
+                ? internationalOvernightCount
+                : (baseSalaryData?['internationalOvernight'] as num? ?? 0)
+                    .toInt();
 
         await dataService.saveLayoverData(
           totalLayovers: localLayoverCount,
@@ -217,11 +226,9 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
       setState(() {
         // Load base salary data with null safety
         controllers['alti_gun']?.text = data['sixthDay']?.toString() ?? '0';
-        controllers['dis_hat_yati']?.text =
-            data['internationalOvernight']?.toString() ?? '0';
         controllers['base_maas']?.text = data['baseSalary']?.toString() ?? '0';
         controllers['euro_rate']?.text = data['euroRate']?.toString() ?? '0';
-        controllers['duzeltme']?.text = data['duzeltme']?.toString() ?? '0';
+        controllers['off_duty']?.text = data['offDutyCounts']?.toString() ?? '0';
 
         // Also update role if available
         if (data['role'] != null) {
@@ -259,17 +266,6 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
     }
   }
 
-  double safeDoubleConvert(String text) {
-    if (text.isEmpty || text.trim().isEmpty) {
-      return 0.0;
-    }
-    try {
-      return double.parse(text.replaceAll(',', '.'));
-    } catch (e) {
-      throw 'Invalid number format: $text';
-    }
-  }
-
   Future<void> saveValues() async {
     if (_formKey.currentState!.validate()) {
       try {
@@ -299,15 +295,19 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
           return;
         }
 
-        // Create updated data map
+        // Create updated data map - international overnight is derived
+        // automatically from the selected roster, not entered manually
+        final savedBaseData = await _dataService.getBaseSalaryData();
+        final rosterLayoverData = _selectedRoster!.data['layoverCount'];
+        final int internationalOvernight = rosterLayoverData is Map
+            ? (rosterLayoverData['international'] as int? ?? 0)
+            : ((savedBaseData?['internationalOvernight'] as num?)?.toInt() ?? 0);
+
         final updatedData = {
           'sixthDay': safeIntConvert(controllers['alti_gun']!.text),
-          'internationalOvernight': safeIntConvert(
-            controllers['dis_hat_yati']!.text,
-          ),
+          'internationalOvernight': internationalOvernight,
           'baseSalary': convertTurkishNumber(controllers['base_maas']!.text),
           'euroRate': convertTurkishNumber(controllers['euro_rate']!.text),
-          'duzeltme': safeDoubleConvert(controllers['duzeltme']!.text),
           'role': _role,
         };
 
@@ -322,6 +322,9 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
           throw Exception('Euro rate must be greater than 0');
         }
 
+        // Off to duty count is entered manually (parsed info provides no value)
+        offDutyCounts = safeIntConvert(controllers['off_duty']!.text);
+
         // Save all data in one operation, including fixes per roster period
         final rosterPeriod = _selectedRoster!.data['rosterPeriod'] as String?;
         await _dataService.saveBaseSalaryData(
@@ -329,7 +332,7 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
           internationalOvernight: updatedData['internationalOvernight'] as int,
           baseSalary: updatedData['baseSalary'] as double,
           euroRate: updatedData['euroRate'] as double,
-          duzeltme: updatedData['duzeltme'] as double,
+          offDutyCounts: offDutyCounts,
           rosterPeriod: rosterPeriod,
         );
 
@@ -337,11 +340,8 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
         final baseSalaryData = {
           'baseSalary': convertTurkishNumber(controllers['base_maas']!.text),
           'sixthDay': safeIntConvert(controllers['alti_gun']!.text),
-          'internationalOvernight': safeIntConvert(
-            controllers['dis_hat_yati']!.text,
-          ),
+          'internationalOvernight': updatedData['internationalOvernight'],
           'euroRate': convertTurkishNumber(controllers['euro_rate']!.text),
-          'duzeltme': safeDoubleConvert(controllers['duzeltme']!.text),
         };
 
         // Get domestic commission for the roster period
@@ -361,9 +361,8 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
 
         // Reset fixes after calculation (except euro rate)
         setState(() {
-          controllers['dis_hat_yati']?.text = '0';
-          controllers['duzeltme']?.text = '0';
           controllers['alti_gun']?.text = '0';
+          controllers['off_duty']?.text = '0';
           // controllers['euro_rate'] stays as is
         });
 
@@ -384,15 +383,13 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
     }
   }
 
-  String? validateNumber(String? value, {bool isInteger = false, bool isAdjustmentField = false}) {
+  String? validateNumber(String? value, {bool isInteger = false}) {
     if (value == null || value.isEmpty) {
       return null;
     }
     try {
       if (isInteger) {
         safeIntConvert(value);
-      } else if (isAdjustmentField) {
-        safeDoubleConvert(value);
       } else {
         convertTurkishNumber(value);
       }
@@ -1145,13 +1142,7 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
                               const SizedBox(height: 16),
                             ],
                             ...fields.map((field) {
-                              final isInteger = [
-                                'alti_gun',
-                                'dis_hat_yati',
-                              ].contains(field.$2);
-
-                              final isAdjustmentField = field.$2 == 'duzeltme';
-
+                              final isInteger = ['alti_gun', 'off_duty'].contains(field.$2);
                               final isEuroRate = field.$2 == 'euro_rate';
 
                               return Padding(
@@ -1170,10 +1161,6 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
                                           if (isInteger)
                                             FilteringTextInputFormatter
                                                 .digitsOnly
-                                          else if (isAdjustmentField)
-                                            FilteringTextInputFormatter.allow(
-                                              RegExp(r'^-?\d*\.?\d*$'),
-                                            )
                                           else if (isEuroRate)
                                             FilteringTextInputFormatter.allow(
                                               RegExp(r'^\d*\.?\d{0,2}$'),
@@ -1212,7 +1199,6 @@ class _BaseMaasScreenState extends State<BaseMaasScreen> {
                                   validator: (value) => validateNumber(
                                     value,
                                     isInteger: isInteger,
-                                    isAdjustmentField: isAdjustmentField,
                                   ),
                                 ),
                               );

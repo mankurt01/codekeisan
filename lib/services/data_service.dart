@@ -221,20 +221,28 @@ class DataService {
     required int sixthDay,
     required int internationalOvernight,
     required double euroRate,
-    required double duzeltme,
+    int? offDutyCounts,
     String? employmentType,
     String? partTimeType,
     String? yearsOfService,
     String? rosterPeriod,
   }) async {
     final data = await _readData();
+    final currentData = data['base_salary_data'] as Map<String, dynamic>? ?? {};
+
+    // Preserve the previously saved off-duty count when this method is called
+    // without one (e.g. by the base salary service screen or import flow).
+    final resolvedOffDuty = offDutyCounts ??
+        currentData['offDutyCounts'] as int? ??
+        data['off_duty_counts'] as int? ??
+        0;
 
     data['base_salary_data'] = {
       'baseSalary': baseSalary,
       'sixthDay': sixthDay,
       'internationalOvernight': internationalOvernight,
       'euroRate': euroRate,
-      'duzeltme': duzeltme,
+      'offDutyCounts': resolvedOffDuty,
       'employmentType': employmentType,
       'partTimeType': partTimeType,
       'yearsOfService': yearsOfService,
@@ -245,9 +253,8 @@ class DataService {
     if (rosterPeriod != null && rosterPeriod.isNotEmpty) {
       final fixesMap = data['fixes_per_roster'] as Map<String, dynamic>? ?? {};
       fixesMap[rosterPeriod] = {
-        'dis_hat_yati': internationalOvernight,
-        'duzeltme': duzeltme,
         'alti_gun': sixthDay,
+        'off_duty': resolvedOffDuty,
       };
       data['fixes_per_roster'] = fixesMap;
     }
@@ -322,14 +329,17 @@ class DataService {
     return {
       'totalLayovers': salaryData['totalLayovers'] ?? 0,
       'internationalOvernight': salaryData['internationalOvernight'] ?? 0,
-      'duzeltme': (salaryData['duzeltme'] as num?)?.toDouble() ?? 0.0,
     };
   }
 
-  // Get off duty counts
+  // Get off duty counts (stored in base_salary_data like the 6. Gün field,
+  // with a fallback to the legacy off_duty_counts location)
   Future<int> getOffDutyCounts() async {
     final data = await _readData();
-    return data['off_duty_counts'] as int? ?? 0;
+    final salaryData = data['base_salary_data'] as Map<String, dynamic>? ?? {};
+    return salaryData['offDutyCounts'] as int? ??
+        data['off_duty_counts'] as int? ??
+        0;
   }
 
   // Get current commission based on roster period
