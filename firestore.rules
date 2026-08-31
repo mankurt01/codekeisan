@@ -29,7 +29,7 @@ service cloud.firestore {
         request.resource.data.userId == request.auth.uid &&
         request.resource.data.keys().hasAll(['email', 'userId', 'appId', 'registeredAt', 'lastUsedAt', 'isApproved']) &&
         // Ensure isApproved is false by default (only superuser can set it to true)
-        (request.resource.data.isApproved == false || isSuperUser())
+        (request.resource.data.isApproved == true || isSuperUser())
       );
 
       // Allow update for timestamp updates by owner, or approval by superuser
