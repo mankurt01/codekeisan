@@ -93,50 +93,51 @@ class CustomAuthService {
   }
 
   // Sign in with Apple
+
   Future<UserCredential> signInWithApple() async {
+  try {
+    debugPrint('Starting Apple sign-in process...');
+
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      webAuthenticationOptions: WebAuthenticationOptions(
+        clientId: 'com.keisan.auth.service',
+        redirectUri: Uri.parse(
+          'https://keisan-4bf8e.firebaseapp.com/__/auth/handler',
+        ),
+      ),
+    );
+
+    debugPrint('Apple sign-in successful');
+
+    final oauthCredential = OAuthProvider("apple.com").credential(
+      idToken: appleCredential.identityToken,
+      accessToken: appleCredential.authorizationCode,
+    );
+
+    debugPrint('Signing into Firebase with Apple credential...');
+    final userCredential = await _auth.signInWithCredential(oauthCredential);
+    debugPrint('Firebase sign-in successful for: ${userCredential.user?.email}');
+
+    final deviceAuthService = DeviceAuthService();
     try {
-      debugPrint('Starting Apple sign-in process...');
-
-      // Request credential for the sign-in
-      final appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
-
-      debugPrint('Apple sign-in successful');
-
-      // Create OAuthCredential
-      final oauthCredential = OAuthProvider("apple.com").credential(
-        idToken: appleCredential.identityToken,
-        accessToken: appleCredential.authorizationCode,
-      );
-
-      // Sign in to Firebase
-      debugPrint('Signing into Firebase with Apple credential...');
-      final userCredential = await _auth.signInWithCredential(oauthCredential);
-      debugPrint('Firebase sign-in successful for: ${userCredential.user?.email}');
-
-      // Verify device after Firebase auth but before completing sign-in
-      final deviceAuthService = DeviceAuthService();
-      try {
-        await deviceAuthService.verifyUserAfterLogin();
-        // Persist login info so the session can be restored on next launches
-        await AuthSessionService.saveSessionInfo(userCredential.user!);
-      } catch (e) {
-        // If device verification fails, sign out and rethrow
-        debugPrint('Device verification failed during Apple sign-in: $e');
-        await _auth.signOut();
-        rethrow;
-      }
-
-      return userCredential;
+      await deviceAuthService.verifyUserAfterLogin();
+      await AuthSessionService.saveSessionInfo(userCredential.user!);
     } catch (e) {
-      debugPrint('Error signing in with Apple: $e');
+      debugPrint('Device verification failed during Apple sign-in: $e');
+      await _auth.signOut();
       rethrow;
     }
+
+    return userCredential;
+  } catch (e) {
+    debugPrint('Error signing in with Apple: $e');
+    rethrow;
   }
+}
 
   // Sign out
   Future<void> signOut() async {
