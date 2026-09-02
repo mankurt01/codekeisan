@@ -104,6 +104,7 @@ class DeviceAuthService {
       'isApproved': true, // Default to false - requires admin approval
     };
 
+
     try {
       await userRegDocRef.set(registrationData);
       debugPrint('DeviceAuthService.registerUser: New registration created successfully');
