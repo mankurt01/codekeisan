@@ -220,4 +220,37 @@ void main() {
       expect(layover.layoverStartTime, DateTime(2026, 9, 9, 0, 20));
     });
   });
+  group('LayoverService multi-night pairing in one VEVENT', () {
+    test('two nights in a single FLY event produce two layovers', () {
+      final events = [
+        _event(
+          uid: 'multi-1',
+          summary: 'FLY (AYT-EZS-BTS-AYT)',
+          dtStart: DateTime(2026, 8, 10, 9, 0),
+          description: [
+            'Mon, 10 Aug 2026',
+            'Check-in    09:00               AYT',
+            'XQ 501    11:00  12:30   AYT-EZS',
+            'Release     20:00               EZS',
+            'Hotel       20:30  06:00        ELAZIG PARK HOTEL',
+            'Tue, 11 Aug 2026',
+            'Check-in    07:00               EZS',
+            'XQ 502    09:00  10:30   EZS-BTS',
+            'Release     19:00               BTS',
+            'Hotel       19:30  05:00        BURSA HOTEL',
+            'Wed, 12 Aug 2026',
+            'Check-in    06:00               BTS',
+            'XQ 503    08:00  09:30   BTS-AYT',
+            'Release     12:00               AYT',
+          ].join('\n'),
+        ),
+      ];
+
+      final layovers = LayoverService.extractLayoversFromEvents(events, 'u');
+      expect(layovers.length, 2,
+          reason: 'One layover per night: EZS (Mon) and BTS (Tue)');
+      expect(layovers[0].location, 'EZS');
+      expect(layovers[1].location, 'BTS');
+    });
+  });
 }

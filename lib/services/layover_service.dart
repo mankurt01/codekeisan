@@ -143,6 +143,7 @@ class LayoverService {
       String? checkinTimeStr;
       String? checkinAirport;
       DateTime? checkinDateUtc;
+      int embeddedIndex = 0;
 
       for (int si = 0; si < segments.length; si++) {
         final seg = segments[si];
@@ -216,6 +217,33 @@ class LayoverService {
                   checkinDateUtc =
                       checkinDateUtc!.add(const Duration(days: 1));
                 }
+                // Emit this night as its own layover, then reset the
+                // single-night state so the next Release opens a fresh night
+                // (multi-night pairings packed into one VEVENT).
+                final duration = checkinDateUtc!.difference(releaseDateUtc!);
+                if (duration.inMinutes >= 30) {
+                  embeddedIndex++;
+                  final layover = LayoverEvent.createFromTimes(
+                    id: 'layover_embedded_${event['uid']}${embeddedIndex > 1 ? '_$embeddedIndex' : ''}',
+                    checkOutTime: releaseDateUtc!,
+                    reportingTime: checkinDateUtc!,
+                    isInternational: _isInternationalLocation(releaseAirport!),
+                    location: releaseAirport!,
+                    userId: userId,
+                  );
+                  layovers.add(layover);
+                  _logger.info(
+                      'Created embedded layover at $releaseAirport, duration: ${duration.inHours}h');
+                  releaseTimeStr = null;
+                  releaseAirport = null;
+                  releaseDateUtc = null;
+                  hotelName = null;
+                  hotelAddress = null;
+                  hotelPhone = null;
+                  checkinTimeStr = null;
+                  checkinAirport = null;
+                  checkinDateUtc = null;
+                }
                 _logger.info(
                     '🛫 Found check-in at $checkinAirport @ $checkinTimeStr on $segDate');
               }
@@ -224,27 +252,6 @@ class LayoverService {
         }
       }
 
-      // If we found a release+checkin pair, create a LayoverEvent
-      if (releaseTimeStr != null &&
-          checkinTimeStr != null &&
-          releaseDateUtc != null &&
-          checkinDateUtc != null &&
-          releaseAirport != null) {
-        final duration = checkinDateUtc!.difference(releaseDateUtc!);
-        if (duration.inMinutes >= 30) {
-          final layover = LayoverEvent.createFromTimes(
-            id: 'layover_embedded_${event['uid']}',
-            checkOutTime: releaseDateUtc!,
-            reportingTime: checkinDateUtc!,
-            isInternational: _isInternationalLocation(releaseAirport!),
-            location: releaseAirport!,
-            userId: userId,
-          );
-          layovers.add(layover);
-          _logger.info(
-              '✅ Created embedded layover at $releaseAirport, duration: ${duration.inHours}h');
-        }
-      }
     } catch (e, st) {
       _logger.warning('Error extracting embedded layover: $e\n$st');
     }
