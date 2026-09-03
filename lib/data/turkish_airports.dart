@@ -48,7 +48,7 @@ const Set<String> turkishAirportCodes = {
   
   // Mediterranean Region
   'HTY', // Hatay
-  'KZR', // Kahramanmaras
+  'KZR', // Kutahya Zafer (Kahramanmaras is KCM)
   
   // Aegean Region
   'DNZ', // Denizli Cardak

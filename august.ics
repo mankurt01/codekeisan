@@ -1,0 +1,556 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:CrewAccess
+X-WR-CALNAME:CrewAccess-events
+X-WR-RELCALID:003823
+NAME:CrewAccess-events
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:2941008
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260730T210000Z
+DTEND:20260731T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: COFF.31JUL26_2941
+ 008\nAll times are in UTC time zone\n\nThu, 30 Jul 2026\n- - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:0
+ 0/+1     AYT          OFF.\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: COFF.31JUL26_2941008\nAll times are in UTC time zon
+ e\n\nThu\, 30 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF.\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019827
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260731T210000Z
+DTEND:20260801T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32377379891655619
+ 2\nAll times are in UTC time zone\n\nFri, 31 Jul 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:00/
+ +1     AYT          OFF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323773798916556192\nAll times are in UTC time zone\
+ n\nFri\, 31 Jul 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019828
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260801T210000Z
+DTEND:20260802T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32377380321152348
+ 8\nAll times are in UTC time zone\n\nSat, 1 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:00/
+ +1     AYT          OFF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323773803211523488\nAll times are in UTC time zone\
+ n\nSat\, 1 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019829
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260803T000000Z
+DTEND:20260803T100000Z
+SUMMARY:LEAVE (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32380058662758050
+ 4\nAll times are in UTC time zone\n\nMon, 3 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nLeave       00:00  10:00        
+ AYT          TOF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323800586627580504\nAll times are in UTC time zone\
+ n\nMon\, 3 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - -\nLeave       00:00  10:00        AYT          TOF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3164384
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260803T210000Z
+DTEND:20260804T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: CMEDGR04AUG26_316
+ 4384\nAll times are in UTC time zone\n\nMon, 3 Aug 2026\n- - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:0
+ 0/+1     AYT          MEDGR\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: CMEDGR04AUG26_3164384\nAll times are in UTC time zo
+ ne\n\nMon\, 3 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - -\nOff         21:00  21:00/+1     AYT          MEDGR\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3166471
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260804T210000Z
+DTEND:20260805T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: CMEDGR05AUG26_316
+ 6471\nAll times are in UTC time zone\n\nTue, 4 Aug 2026\n- - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:0
+ 0/+1     AYT          MEDGR\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: CMEDGR05AUG26_3166471\nAll times are in UTC time zo
+ ne\n\nTue\, 4 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - -\nOff         21:00  21:00/+1     AYT          MEDGR\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3166472
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260805T210000Z
+DTEND:20260806T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: CMEDGR06AUG26_316
+ 6472\nAll times are in UTC time zone\n\nWed, 5 Aug 2026\n- - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:0
+ 0/+1     AYT          MEDGR\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: CMEDGR06AUG26_3166472\nAll times are in UTC time zo
+ ne\n\nWed\, 5 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - -\nOff         21:00  21:00/+1     AYT          MEDGR\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3057066
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260807T120000Z
+DTEND:20260808T215600Z
+SUMMARY:FLY (AYT-KZR-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: CXQ1526-73707AUG2
+ 6_3057066\nAll times are in UTC time zone\n\nFri, 7 Aug 2026\n- - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    12:00               
+ AYT\nTravel      12:00  16:00        AYT - KZR    CCM GT\nRelease     16:0
+ 0               KZR\nTransport   16:00  16:45        KUTAHYA VTR\n                                
+ Phone: 0539 593 53 98\n                                Email: operasyonizm
+ ir@vtrturizm.com\n                                Booking ID: N/A | Status
+ : NEW\n                                Vehicle type: N/A\nHotel       16:4
+ 5  11:30        IKBAL THERMAL HOTEL AND SPA HOTEL\n                                
+ Address: DORTYOL,AFYON KUTAHYA YOLU NO:2/3,03100 MERKEZ/AFYONKARAHISAR, 31
+ 00, KZR, KUTAHYA\n                                N/A | Phone: +90 272 252 
+ 56 00\n                                Email: hasan.calis@ikbal.com\n                                
+ Booking ID: N/A | Status: BOOKED\n\nSat, 8 Aug 2026\n- - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - -\nTransport   11:30  12:15        
+ KUTAHYA VTR\n                                Phone: 0539 593 53 98\n                                
+ Email: operasyonizmir@vtrturizm.com\n                                Booki
+ ng ID: N/A | Status: NEW\n                                Vehicle type: N/
+ A\nCheck-in    12:15               KZR\n1526        13:48  17:11        KZ
+ R - DUS    CCM\n281         18:08  21:26        DUS - AYT    CCM\nRelease     
+ 21:56               AYT\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: CXQ1526-73707AUG26_3057066\nAll times are in UTC ti
+ me zone\n\nFri\, 7 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - -\nCheck-in    12:00               AYT\nTravel      12
+ :00  16:00        AYT - KZR    CCM GT\nRelease     16:00               KZR
+ \nTransport   16:00  16:45        KUTAHYA VTR\n                                
+ Phone: 0539 593 53 98\n                                Email: operasyonizm
+ ir@vtrturizm.com\n                                Booking ID: N/A | Status
+ : NEW\n                                Vehicle type: N/A\nHotel       16:4
+ 5  11:30        IKBAL THERMAL HOTEL AND SPA HOTEL\n                                
+ Address: DORTYOL\,AFYON KUTAHYA YOLU NO:2/3\,03100 MERKEZ/AFYONKARAHISAR\, 
+ 3100\, KZR\, KUTAHYA\n                                N/A | Phone: +90 272 
+ 252 56 00\n                                Email: hasan.calis@ikbal.com\n                                
+ Booking ID: N/A | Status: BOOKED\n\nSat\, 8 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nTransport   11:30  12:15        
+ KUTAHYA VTR\n                                Phone: 0539 593 53 98\n                                
+ Email: operasyonizmir@vtrturizm.com\n                                Booki
+ ng ID: N/A | Status: NEW\n                                Vehicle type: N/
+ A\nCheck-in    12:15               KZR\n1526        13:48  17:11        KZ
+ R - DUS    CCM\n281         18:08  21:26        DUS - AYT    CCM\nRelease     
+ 21:56               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:2978946
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260809T172500Z
+DTEND:20260810T013300Z
+SUMMARY:FLY (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: XQ418-090826CC\nA
+ ll times are in UTC time zone\n\nSun, 9 Aug 2026\n- - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    17:25               
+ AYT\n418         18:46  21:31        AYT - BTS    CCM\n419         22:25  
+ 01:03        BTS - AYT    CCM\n\nMon, 10 Aug 2026\n- - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - -\nRelease     01:33               
+ AYT\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: XQ418-090826CC\nAll times are in UTC time zone\n\nS
+ un\, 9 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - -\nCheck-in    17:25               AYT\n418         18:46  21:31        
+ AYT - BTS    CCM\n419         22:25  01:03        BTS - AYT    CCM\n\nMon\
+ , 10 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - -\nRelease     01:33               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3100759
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260810T210000Z
+DTEND:20260811T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: COFF.11AUG26_3100
+ 759\nAll times are in UTC time zone\n\nMon, 10 Aug 2026\n- - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:0
+ 0/+1     AYT          OFF.\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: COFF.11AUG26_3100759\nAll times are in UTC time zon
+ e\n\nMon\, 10 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF.\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:2979305
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260812T085000Z
+DTEND:20260812T183000Z
+SUMMARY:FLY (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: XQ7646-120826CC\n
+ All times are in UTC time zone\n\nWed, 12 Aug 2026\n- - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    08:50               
+ AYT\n7646        10:06  11:15        AYT - GZT    CCM\n7647        12:19  
+ 13:44        GZT - AYT    CCM\n7780        14:34  15:53        AYT - SZF    
+ CCM\n7781        16:37  18:00        SZF - AYT    CCM\nRelease     18:30               
+ AYT\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: XQ7646-120826CC\nAll times are in UTC time zone\n\n
+ Wed\, 12 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - -\nCheck-in    08:50               AYT\n7646        10:06  11:15        
+ AYT - GZT    CCM\n7647        12:19  13:44        GZT - AYT    CCM\n7780        
+ 14:34  15:53        AYT - SZF    CCM\n7781        16:37  18:00        SZF 
+ - AYT    CCM\nRelease     18:30               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:2979332
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260813T171500Z
+DTEND:20260814T022000Z
+SUMMARY:FLY (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: XQ162-130826CC\nA
+ ll times are in UTC time zone\n\nThu, 13 Aug 2026\n- - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    17:15               
+ AYT\n162         18:39  21:59        AYT - NUE    CCM\n163         22:51  
+ 01:50        NUE - AYT    CCM\n\nFri, 14 Aug 2026\n- - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - -\nRelease     02:20               
+ AYT\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: XQ162-130826CC\nAll times are in UTC time zone\n\nT
+ hu\, 13 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - -\nCheck-in    17:15               AYT\n162         18:39  21:59        
+ AYT - NUE    CCM\n163         22:51  01:50        NUE - AYT    CCM\n\nFri\
+ , 14 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - -\nRelease     02:20               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3210847
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260815T085000Z
+DTEND:20260816T143400Z
+SUMMARY:FLY (AYT-GZT-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: CXQ7646-73715AUG2
+ 6_3210847\nAll times are in UTC time zone\n\nSat, 15 Aug 2026\n- - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    08:50               
+ AYT\n7646        10:36  12:00        AYT - GZT    CCM\nStandby     13:00  
+ 15:30        GZT          CCM RSV-A/P\nRelease     15:30               GZT
+ \nTransport   15:30  16:00        DIRILIS TURIZM\n                                
+ Phone: 533 544 35 78\n                                Email: N/A\n                                
+ Booking ID: N/A | Status: NEW\n                                Vehicle typ
+ e: N/A\nHotel       16:00  10:45        HAMPTON BY HILTON GAZIANTEP\n                                
+ Address: INCILI PINAR,PROF.MUAMMER AKSOY BULVARI.NO:41,27090 SEHITKAMIL/GA
+ ZIANTEP, 27090, GZT, GAZIANTEP\n                                N/A | Phon
+ e: +90 342 211 90 00\n                                Email: mehmet.yasar@
+ hilton.com\n                                Booking ID: N/A | Status: BOOK
+ ED\n\nSun, 16 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - -\nTransport   10:45  11:15        DIRILIS TURIZM\n                                
+ Phone: 533 544 35 78\n                                Email: N/A\n                                
+ Booking ID: N/A | Status: NEW\n                                Vehicle typ
+ e: N/A\nCheck-in    11:15               GZT\n7647        12:44  14:04        
+ GZT - AYT    DEADHEAD\nRelease     14:34               AYT\n</pre></BODY><
+ /HTML>
+DESCRIPTION:Pairing id: CXQ7646-73715AUG26_3210847\nAll times are in UTC ti
+ me zone\n\nSat\, 15 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - - -\nCheck-in    08:50               AYT\n7646        
+ 10:36  12:00        AYT - GZT    CCM\nStandby     13:00  15:30        GZT          
+ CCM RSV-A/P\nRelease     15:30               GZT\nTransport   15:30  16:00        
+ DIRILIS TURIZM\n                                Phone: 533 544 35 78\n                                
+ Email: N/A\n                                Booking ID: N/A | Status: NEW\
+ n                                Vehicle type: N/A\nHotel       16:00  10:
+ 45        HAMPTON BY HILTON GAZIANTEP\n                                Add
+ ress: INCILI PINAR\,PROF.MUAMMER AKSOY BULVARI.NO:41\,27090 SEHITKAMIL/GAZ
+ IANTEP\, 27090\, GZT\, GAZIANTEP\n                                N/A | Ph
+ one: +90 342 211 90 00\n                                Email: mehmet.yasa
+ r@hilton.com\n                                Booking ID: N/A | Status: BO
+ OKED\n\nSun\, 16 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - -\nTransport   10:45  11:15        DIRILIS TURIZM\n                                
+ Phone: 533 544 35 78\n                                Email: N/A\n                                
+ Booking ID: N/A | Status: NEW\n                                Vehicle typ
+ e: N/A\nCheck-in    11:15               GZT\n7647        12:44  14:04        
+ GZT - AYT    DEADHEAD\nRelease     14:34               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019830
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260816T210000Z
+DTEND:20260817T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32377373449204675
+ 2\nAll times are in UTC time zone\n\nSun, 16 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:00/
+ +1     AYT          OFF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323773734492046752\nAll times are in UTC time zone\
+ n\nSun\, 16 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019831
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260817T210000Z
+DTEND:20260818T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32377373878701404
+ 8\nAll times are in UTC time zone\n\nMon, 17 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:00/
+ +1     AYT          OFF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323773738787014048\nAll times are in UTC time zone\
+ n\nMon\, 17 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019832
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260818T210000Z
+DTEND:20260819T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32377374308198134
+ 4\nAll times are in UTC time zone\n\nTue, 18 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:00/
+ +1     AYT          OFF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323773743081981344\nAll times are in UTC time zone\
+ n\nTue\, 18 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019833
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260819T210000Z
+DTEND:20260820T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32377374737694864
+ 0\nAll times are in UTC time zone\n\nWed, 19 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:00/
+ +1     AYT          OFF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323773747376948640\nAll times are in UTC time zone\
+ n\nWed\, 19 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019834
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260820T210000Z
+DTEND:20260821T070000Z
+SUMMARY:LEAVE (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32380053508797295
+ 2\nAll times are in UTC time zone\n\nThu, 20 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nLeave       21:00  07:00        
+ AYT          TOF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323800535087972952\nAll times are in UTC time zone\
+ n\nThu\, 20 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - -\nLeave       21:00  07:00        AYT          TOF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:2980302
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260821T134000Z
+DTEND:20260823T094800Z
+SUMMARY:FLY (AYT-COV-AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: XQ664-210826CC\nA
+ ll times are in UTC time zone\n\nFri, 21 Aug 2026\n- - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    13:40               
+ AYT\n664         15:21  18:37        AYT - BER    CCM\n1775        19:50  
+ 23:45        BER - COV    CCM\n\nSat, 22 Aug 2026\n- - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - -\nRelease     00:15               
+ COV\nTransport   00:15  01:00        SERTUR TURIZM\n                                
+ Phone: 0501 207 14 01\n                                Email: info@sertur.
+ web.tr\n                                Booking ID: N/A | Status: NEW\n                                
+ Vehicle type: N/A\nHotel       01:00  22:55        DIVAN HOTEL\n                                
+ Address: KOCAVEZIR TURHAN CEMAL BERIKER BULV.NO:33,01060 SEYHAN/ADANA, 106
+ 0, COV, ADANA\n                                N/A | Phone: +90 322 342 17 
+ 00\n                                Email: fo.adana@divan.com.tr\n                                
+ Booking ID: N/A | Status: BOOKED\nTransport   22:55  23:40        SERTUR T
+ URIZM\n                                Phone: 0501 207 14 01\n                                
+ Email: info@sertur.web.tr\n                                Booking ID: N/A 
+ | Status: NEW\n                                Vehicle type: N/A\nCheck-in    
+ 23:40               COV\n\nSun, 23 Aug 2026\n- - - - - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - -\n1370        00:33  04:36        COV 
+ - DUS    CCM\n181         05:51  09:18        DUS - AYT    CCM\nRelease     
+ 09:48               AYT\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: XQ664-210826CC\nAll times are in UTC time zone\n\nF
+ ri\, 21 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - -\nCheck-in    13:40               AYT\n664         15:21  18:37        
+ AYT - BER    CCM\n1775        19:50  23:45        BER - COV    CCM\n\nSat\
+ , 22 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - -\nRelease     00:15               COV\nTransport   00:15  01:00        
+ SERTUR TURIZM\n                                Phone: 0501 207 14 01\n                                
+ Email: info@sertur.web.tr\n                                Booking ID: N/A 
+ | Status: NEW\n                                Vehicle type: N/A\nHotel       
+ 01:00  22:55        DIVAN HOTEL\n                                Address: 
+ KOCAVEZIR TURHAN CEMAL BERIKER BULV.NO:33\,01060 SEYHAN/ADANA\, 1060\, COV
+ \, ADANA\n                                N/A | Phone: +90 322 342 17 00\n                                
+ Email: fo.adana@divan.com.tr\n                                Booking ID: 
+ N/A | Status: BOOKED\nTransport   22:55  23:40        SERTUR TURIZM\n                                
+ Phone: 0501 207 14 01\n                                Email: info@sertur.
+ web.tr\n                                Booking ID: N/A | Status: NEW\n                                
+ Vehicle type: N/A\nCheck-in    23:40               COV\n\nSun\, 23 Aug 202
+ 6\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n13
+ 70        00:33  04:36        COV - DUS    CCM\n181         05:51  09:18        
+ DUS - AYT    CCM\nRelease     09:48               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:2980556
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260824T033000Z
+DTEND:20260824T133500Z
+SUMMARY:FLY (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: XQ144-240826CC\nA
+ ll times are in UTC time zone\n\nMon, 24 Aug 2026\n- - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    03:30               
+ AYT\n144         04:45  08:33        AYT - FRA    CCM\n145         09:49  
+ 13:05        FRA - AYT    CCM\nRelease     13:35               AYT\n</pre>
+ </BODY></HTML>
+DESCRIPTION:Pairing id: XQ144-240826CC\nAll times are in UTC time zone\n\nM
+ on\, 24 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - -\nCheck-in    03:30               AYT\n144         04:45  08:33        
+ AYT - FRA    CCM\n145         09:49  13:05        FRA - AYT    CCM\nReleas
+ e     13:35               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:2980673
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260825T044000Z
+DTEND:20260825T140800Z
+SUMMARY:FLY (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: XQ160-250826CC\nA
+ ll times are in UTC time zone\n\nTue, 25 Aug 2026\n- - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    04:40               
+ AYT\n160         06:09  09:41        AYT - BER    CCM\n161         10:35  
+ 13:38        BER - AYT    CCM\nRelease     14:08               AYT\n</pre>
+ </BODY></HTML>
+DESCRIPTION:Pairing id: XQ160-250826CC\nAll times are in UTC time zone\n\nT
+ ue\, 25 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - -\nCheck-in    04:40               AYT\n160         06:09  09:41        
+ AYT - BER    CCM\n161         10:35  13:38        BER - AYT    CCM\nReleas
+ e     14:08               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3100760
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260825T210000Z
+DTEND:20260826T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: COFF.26AUG26_3100
+ 760\nAll times are in UTC time zone\n\nTue, 25 Aug 2026\n- - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:0
+ 0/+1     AYT          OFF.\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: COFF.26AUG26_3100760\nAll times are in UTC time zon
+ e\n\nTue\, 25 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF.\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3050414
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260827T050000Z
+DTEND:20260827T090000Z
+SUMMARY:GROUND (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: CMEDC27AUG26_3050
+ 414\nAll times are in UTC time zone\n\nThu, 27 Aug 2026\n- - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    05:00               
+ AYT\nGround      05:00  09:00        AYT          CCM MEDC\nRelease     09
+ :00               AYT\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: CMEDC27AUG26_3050414\nAll times are in UTC time zon
+ e\n\nThu\, 27 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - -\nCheck-in    05:00               AYT\nGround      05:00  
+ 09:00        AYT          CCM MEDC\nRelease     09:00               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:2981028
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260828T182000Z
+DTEND:20260829T042800Z
+SUMMARY:FLY (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: XQ246-280826CC\nA
+ ll times are in UTC time zone\n\nFri, 28 Aug 2026\n- - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - -\nCheck-in    18:20               
+ AYT\n246         20:07  23:49        AYT - ERF    CCM\n\nSat, 29 Aug 2026\
+ n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n247         
+ 00:43  03:58        ERF - AYT    CCM\nRelease     04:28               AYT\
+ n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: XQ246-280826CC\nAll times are in UTC time zone\n\nF
+ ri\, 28 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - -\nCheck-in    18:20               AYT\n246         20:07  23:49        
+ AYT - ERF    CCM\n\nSat\, 29 Aug 2026\n- - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - -\n247         00:43  03:58        ERF - AYT    
+ CCM\nRelease     04:28               AYT\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019835
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260829T210000Z
+DTEND:20260830T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32377403084479017
+ 6\nAll times are in UTC time zone\n\nSat, 29 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:00/
+ +1     AYT          OFF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323774030844790176\nAll times are in UTC time zone\
+ n\nSat\, 29 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260903T121357Z
+UID:3019836
+TRANSP:TRANSPARENT
+LOCATION:AYT
+DTSTART:20260830T210000Z
+DTEND:20260831T210000Z
+SUMMARY:OFF (AYT)
+X-ALT-DESC;FMTTYPE=text/html:<HTML><BODY><pre>Pairing id: 32377403513975747
+ 2\nAll times are in UTC time zone\n\nSun, 30 Aug 2026\n- - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - -\nOff         21:00  21:00/
+ +1     AYT          OFF\n</pre></BODY></HTML>
+DESCRIPTION:Pairing id: 323774035139757472\nAll times are in UTC time zone\
+ n\nSun\, 30 Aug 2026\n- - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - -\nOff         21:00  21:00/+1     AYT          OFF\n
+END:VEVENT
+END:VCALENDAR

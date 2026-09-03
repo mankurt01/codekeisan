@@ -53,25 +53,32 @@ END:VCALENDAR
 ''';
 
       final schedule = service.parseIcsString(ics);
-      expect(schedule.length, 1);
+      // A single-VEVENT multi-day pairing is now split into one ScheduleDay
+      // per date header so per-day rules (layover counting, duty time) see
+      // the pairing day by day.
+      expect(schedule.length, 2);
 
-      final events = schedule.first.events;
-      expect(events.any((e) => e.contains('Multi-day')), isTrue,
-          reason: 'Expected multi-day marker, got: $events');
-      expect(events.any((e) => e.contains('Layover: EZS')), isTrue,
-          reason: 'Expected layover at EZS, got: $events');
-      expect(events.any((e) => e.contains('ELAZIG PARK DEDEMAN')), isTrue,
-          reason: 'Expected hotel name, got: $events');
-      expect(events.any((e) => e.contains('Transport')), isTrue,
-          reason: 'Expected transport lines, got: $events');
-      expect(events.any((e) => e.contains('570') && e.contains('AYT-EZS')), isTrue,
-          reason: 'Expected outbound leg 570 AYT-EZS, got: $events');
-      expect(events.any((e) => e.contains('571') && e.contains('EZS-STR')), isTrue,
-          reason: 'Expected outbound leg 571 EZS-STR, got: $events');
-      expect(events.any((e) => e.contains('572') && e.contains('EZS-DUS')), isTrue,
-          reason: 'Expected inbound leg 572 EZS-DUS, got: $events');
-      expect(events.any((e) => e.contains('573') && e.contains('DUS-AYT')), isTrue,
-          reason: 'Expected inbound leg 573 DUS-AYT, got: $events');
+      final day1 = schedule.first.events;
+      expect(day1.any((e) => e.contains('Multi-day')), isTrue,
+          reason: 'Expected multi-day marker, got: $day1');
+      expect(day1.any((e) => e.contains('Layover: EZS')), isTrue,
+          reason: 'Expected layover at EZS, got: $day1');
+      expect(day1.any((e) => e.contains('ELAZIG PARK DEDEMAN')), isTrue,
+          reason: 'Expected hotel name, got: $day1');
+      expect(day1.any((e) => e.contains('Transport')), isTrue,
+          reason: 'Expected transport lines, got: $day1');
+      expect(day1.any((e) => e.contains('570') && e.contains('AYT-EZS')), isTrue,
+          reason: 'Expected outbound leg 570 AYT-EZS, got: $day1');
+      expect(day1.any((e) => e.contains('571') && e.contains('EZS-STR')), isTrue,
+          reason: 'Expected outbound leg 571 EZS-STR, got: $day1');
+
+      final day2 = schedule.last.events;
+      expect(day2.any((e) => e.contains('Multi-day')), isTrue,
+          reason: 'Expected multi-day marker on the pairing return day, got: $day2');
+      expect(day2.any((e) => e.contains('572') && e.contains('EZS-DUS')), isTrue,
+          reason: 'Expected inbound leg 572 EZS-DUS, got: $day2');
+      expect(day2.any((e) => e.contains('573') && e.contains('DUS-AYT')), isTrue,
+          reason: 'Expected inbound leg 573 DUS-AYT, got: $day2');
     });
 
     test('extractLayoversFromSchedule detects embedded layover', () {

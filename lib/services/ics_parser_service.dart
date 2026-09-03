@@ -167,6 +167,83 @@ class IcsParserService {
     return parseIcsString(icsString);
   }
 
+  /// Splits a multi-day FLY event description into per-day chunks keyed by the
+  /// date parsed from each date header (e.g. "Sat, 15 Aug 2026").
+  ///
+  /// CrewAccess packs whole pairings into a single VEVENT whose DTSTART is day
+  /// 1 only. Without this split every pairing day lands on day 1, so per-day
+  /// rules (layover counting, duty time) see one giant day whose last leg
+  /// arrives back at base and misclassify the whole pairing as a turnaround.
+  ///
+  /// Returns an empty map when the description has zero or one date header
+  /// (single-day event -> the caller keeps the normal grouping path).
+  Map<DateTime, List<String>> _splitFlyDescriptionByDay(String description) {
+    final decoded = description
+        .replaceAll('\\n', '\n')
+        .replaceAll('\\N', '\n')
+        .replaceAll('\\,', ',')
+        .replaceAll('\\;', ';');
+
+    // Only split pairings that actually place the crew away from base: the
+    // description must carry layover evidence — a hotel booking or a release
+    // at a non-base station. Overnight turnarounds that simply end back at
+    // base (e.g. AYT-ERF / ERF-AYT with no hotel and the final release at
+    // AYT) must stay merged, otherwise the outbound day is miscounted as a
+    // layover instead of a rest stop.
+    final hasHotel =
+        RegExp(r'Hotel\s+\d{1,2}:\d{2}', caseSensitive: false).hasMatch(decoded);
+    final baseMatch = RegExp(r'\(([A-Z]{3})').firstMatch(description);
+    final base = (baseMatch != null ? baseMatch.group(1)! : 'AYT').toUpperCase();
+    final hasAwayRelease = RegExp(r'Release\s*\d{1,2}:\d{2}\s+([A-Z]{3})')
+        .allMatches(decoded)
+        .any((m) => m.group(1)!.toUpperCase() != base);
+    if (!hasHotel && !hasAwayRelease) return {};
+
+    final headerRe = RegExp(
+      r'^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s+(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})',
+      caseSensitive: false,
+    );
+    const monthMap = {
+      'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+      'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12,
+    };
+    final result = <DateTime, List<String>>{};
+    DateTime? currentDate;
+    var headerCount = 0;
+    for (final rawLine in decoded.split('\n')) {
+      final line = rawLine.trim();
+      if (line.isEmpty) continue;
+      final m = headerRe.firstMatch(line);
+      if (m != null) {
+        final day = int.parse(m.group(1)!);
+        final month = monthMap[m.group(2)!.toLowerCase()]!;
+        final year = int.parse(m.group(3)!);
+        currentDate = DateTime(year, month, day);
+        result.putIfAbsent(currentDate, () => []);
+        headerCount++;
+        continue;
+      }
+      if (currentDate == null) continue;
+      if (line.startsWith('- - -')) continue;
+      result[currentDate]!.add(line);
+    }
+    if (headerCount <= 1) return {};
+    // Drop chunks that carry neither flight legs nor a Release line: they are
+    // hotel/transport tails already covered by the neighbouring VEVENTs
+    // (rosters that publish pairings as several VEVENTs repeat the hotel and
+    // the next-day check-in inside the outbound event). Keeping them would
+    // create phantom leg-less days and inflate the continuity count.
+    final legRe = RegExp(
+        r'(\d{3,4})\s+(\d{2}:\d{2})\s+(\d{2}:\d{2})\s+[A-Z]{3}\s*-\s*[A-Z]{3}');
+    result.removeWhere((_, lines) {
+      final joined = lines.join('\n');
+      return !legRe.hasMatch(joined) &&
+          !RegExp(r'\bRelease\b').hasMatch(joined);
+    });
+    return result;
+  }
+
+  /// Parse ICS string into ScheduleDays
   /// Parse ICS string into ScheduleDays
   List<ScheduleDay> parseIcsString(String icsString) {
     try {
@@ -178,6 +255,12 @@ class IcsParserService {
       // Capture the calendar owner id for the ownership check (if present).
       lastRelcalId = extractRelcalId(icsString);
       print('[DEBUG] parseIcsString: RELCALID=$lastRelcalId');
+      // RFC 5545 3.1: a CRLF immediately followed by a space or tab is a soft
+      // line break and must be removed. Producers fold mid-token (e.g.
+      // "7646        \r\n 10:36"); if folds reach the parser untouched, the
+      // tokens glue together ("764610:36") and flight legs silently stop
+      // matching. Unfold here so the parser sees the original logical lines.
+      icsString = icsString.replaceAll(RegExp(r'\r\n[ \t]'), '');
       final iCalendar = ICalendar.fromString(icsString);
       final events = iCalendar.data;
       
@@ -185,15 +268,47 @@ class IcsParserService {
       
       // Group events by Day
       final Map<String, List<Map<String, dynamic>>> eventsByDay = {};
-      
+      // Pre-formatted events from multi-day pairing VEVENTs, keyed by the
+      // date header each pairing day belongs to.
+      final Map<String, List<String>> preFormattedByDay = {};
+
       for (final event in events) {
         if (event['type'] != 'VEVENT') continue;
-        
+
         final dtStart = _parseIcsDate(event['dtstart']);
         print('[DEBUG] parseIcsString: VEVENT type=${event['type']} '
             'summary=${event['summary']} dtstart=${event['dtstart']} parsed=$dtStart');
         if (dtStart == null) continue;
-        
+
+        final summary = (event['summary'] ?? '').toString();
+        final isFly = summary.contains('FLY') ||
+            summary.contains('XQ') ||
+            summary.contains('TK') ||
+            summary.contains('Flight');
+
+        // New CrewAccess format: whole multi-day pairings are packed into a
+        // single VEVENT whose DTSTART is day 1 only. Split the description
+        // into one day per date header so per-day rules (layover counting,
+        // duty time) see the pairing day by day.
+        if (isFly) {
+          final dayChunks =
+              _splitFlyDescriptionByDay((event['description'] ?? '').toString());
+          if (dayChunks.length > 1) {
+            final dtEnd = _parseIcsDate(event['dtend']);
+            final startTime = DateFormat('HH:mm').format(dtStart);
+            final endTime =
+                dtEnd != null ? DateFormat('HH:mm').format(dtEnd) : '';
+            dayChunks.forEach((chunkDate, chunkLines) {
+              final dayKey = DateFormat('yyyy-MM-dd').format(chunkDate);
+              final formatted = _parseFlyEvent(
+                  chunkLines.join('\n'), startTime, endTime, summary);
+              preFormattedByDay.putIfAbsent(dayKey, () => []).addAll(
+                  ['📅 Multi-day pairing', ...formatted]);
+            });
+            continue;
+          }
+        }
+
         // Key by YYYY-MM-DD
         final key = DateFormat('yyyy-MM-dd').format(dtStart);
         eventsByDay.putIfAbsent(key, () => []).add(event);
@@ -203,22 +318,23 @@ class IcsParserService {
       
       // Convert to ScheduleDays
       List<ScheduleDay> schedule = [];
-      final sortedKeys = eventsByDay.keys.toList()..sort();
-      
-      for (final key in sortedKeys) {
+      final allDayKeys = <String>{...eventsByDay.keys, ...preFormattedByDay.keys}
+          .toList()
+        ..sort();
+
+      for (final key in allDayKeys) {
         final date = DateTime.parse(key);
-        final dayEventsRaw = eventsByDay[key]!;
-        
-        // Sort events within the day by time
-        dayEventsRaw.sort((a, b) {
+        final dayEventsRaw = eventsByDay[key] ?? [];
+
+        // Multi-day pairing chunks are already in chronological order.
+        final formattedEvents = <String>[...preFormattedByDay[key] ?? const []];
+
+        final dayEventsRawSorted = [...dayEventsRaw]..sort((a, b) {
            final tA = _parseIcsDate(a['dtstart']);
            final tB = _parseIcsDate(b['dtstart']);
            return tA!.compareTo(tB!);
         });
-        
-        final formattedEvents = <String>[];
-        
-        for (final rawEvent in dayEventsRaw) {
+        for (final rawEvent in dayEventsRawSorted) {
            formattedEvents.addAll(_formatEventForCompatibility(rawEvent));
         }
         
@@ -652,14 +768,16 @@ class IcsParserService {
         }
       }
 
-      // Extract release time
+      // Extract release time — use the LAST Release line of the day: split
+      // pairings legitimately carry an intermediate release (e.g. 00:14 at
+      // the layover station) plus the final release back at base, and the
+      // return-day rule must apply to the final one.
       String? releaseTime;
       for (final event in events) {
         if (event.contains('Release')) {
           final m = RegExp(r'(\d{1,2}:\d{2})').firstMatch(event);
           if (m != null) {
             releaseTime = m.group(1);
-            break;
           }
         }
       }
@@ -669,7 +787,30 @@ class IcsParserService {
       // --- Continuity rule: day with no flights in between ---
       // "if there is a day in between with no duties it counts as 1 layover"
       if (!hasFlights) {
-        if (currentlyInLayover) {
+        // A pairing can position crew to the layover station by ground
+        // transport (e.g. "Travel ... AYT - KZR"), so the day carries no
+        // flight legs but still has an explicit layover marker or hotel.
+        final joined = events.join(' ');
+        final layoverMatch =
+            RegExp(r'Layover:\s*([A-Z]{3})').firstMatch(joined);
+        final hasHotel = events.any((e) => e.contains('Hotel:'));
+        if (layoverMatch != null &&
+            layoverMatch.group(1)!.toUpperCase() != homeBaseUpper) {
+          currentlyInLayover = true;
+          totalLayovers += 1.0;
+          if (_isDomesticAirport(layoverMatch.group(1)!)) {
+            domesticLayovers++;
+          } else {
+            internationalLayovers++;
+          }
+          print('[DEBUG] computeLayoverCount: day=${day.date} no flight legs '
+              'but ground-positioned layover at ${layoverMatch.group(1)} '
+              '→ +1.0 total=$totalLayovers');
+        } else if (hasHotel && currentlyInLayover) {
+          totalLayovers += 1.0;
+          print('[DEBUG] computeLayoverCount: day=${day.date} no flight legs, '
+              'hotel day inside layover streak → +1.0 total=$totalLayovers');
+        } else if (currentlyInLayover) {
           // A day off while in a layover streak still counts as 1 layover
           totalLayovers += 1.0;
           print('[DEBUG] computeLayoverCount: day=${day.date} no flights '
@@ -754,6 +895,19 @@ class IcsParserService {
           0.0,
           releaseContribution,
         );
+        // When the rest/hotel period falls on the SAME calendar day as the
+        // return duty (pairing hotel tail merged with the return, e.g. rest
+        // at the layover station then a late-evening check-in), the day
+        // represents both the rest day and the return — credit the rest half
+        // as well, capped at one layover day per calendar day.
+        final hasRestMarker = events
+            .any((e) => e.contains('Hotel:') || e.contains('Layover:'));
+        if (hasRestMarker) {
+          dailyContribution = math.min(1.0, dailyContribution + 0.5);
+          print('[DEBUG] computeLayoverCount: day=${day.date} return day '
+              'also carries the hotel/rest period → +0.5 '
+              'daily=$dailyContribution');
+        }
       } else {
         // Turnaround (home → home) or return without prior layover: 0
         dailyContribution = 0.0;

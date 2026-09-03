@@ -781,7 +781,7 @@ class LayoverService {
     const domesticAirports = [
       'IST', 'ESB', 'AYT', 'ADB', 'DLM', 'BJV', 'GZT', 'TZX', 'MLX', 'ASR',
       'EZS', 'KYA', 'SZF', 'VAS', 'BAL', 'DNZ', 'ERC', 'KFS', 'MZH', 'SIC',
-      'TEQ', 'USQ', 'YKO', 'AFY', 'ISE', 'KCM', 'SFQ', 'NOP'
+      'TEQ', 'USQ', 'YKO', 'AFY', 'ISE', 'KCM', 'SFQ', 'NOP', 'KZR'
     ];
 
     return !domesticAirports.contains(location.toUpperCase());
