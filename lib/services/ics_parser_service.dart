@@ -794,17 +794,27 @@ class IcsParserService {
         final layoverMatch =
             RegExp(r'Layover:\s*([A-Z]{3})').firstMatch(joined);
         final hasHotel = events.any((e) => e.contains('Hotel:'));
-        if (layoverMatch != null &&
-            layoverMatch.group(1)!.toUpperCase() != homeBaseUpper) {
+        // Ground-positioned days can also surface as a raw
+        // "Release HH:MM XXX" detail line when the positioning sector is
+        // published as a TRAVEL event (parsed by the generic branch, which
+        // emits no Layover marker), e.g. "TRAVEL (AYT-KZR)".
+        final awayReleaseAirport = RegExp(r'Release\s*\d{1,2}:\d{2}\s+([A-Z]{3})')
+            .allMatches(joined)
+            .map((m) => m.group(1)!.toUpperCase())
+            .firstWhere((c) => c != homeBaseUpper, orElse: () => '');
+        final layoverAirport = (layoverMatch?.group(1) ?? awayReleaseAirport)
+            .toUpperCase();
+        if (layoverAirport.isNotEmpty &&
+            layoverAirport != homeBaseUpper) {
           currentlyInLayover = true;
           totalLayovers += 1.0;
-          if (_isDomesticAirport(layoverMatch.group(1)!)) {
+          if (_isDomesticAirport(layoverAirport)) {
             domesticLayovers++;
           } else {
             internationalLayovers++;
           }
           print('[DEBUG] computeLayoverCount: day=${day.date} no flight legs '
-              'but ground-positioned layover at ${layoverMatch.group(1)} '
+              'but ground-positioned layover at $layoverAirport '
               '→ +1.0 total=$totalLayovers');
         } else if (hasHotel && currentlyInLayover) {
           totalLayovers += 1.0;
