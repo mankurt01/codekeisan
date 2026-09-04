@@ -82,48 +82,69 @@ class IcsParserService {
   /// Calculates total duty time in HH:mm for a list of ScheduleDay parsed from ICS.
   ///
   /// Rules:
-  /// - Duty days: duty time = Release - Report (check-in to check-out)
-  /// - Standby days: duty time = 25% of the standby window
+  /// - Flight-duty days: duty time = Release - Report (check-in to check-out)
+  /// - Standby days (no flight legs): duty time = 25% of the standby window
+  /// - Mixed days (genuine standby window followed by flights on the same day,
+  ///   e.g. "SB2 AYT 04:00 ~ 05:45" then flights): full check-in→release duty
+  ///   plus 25% of the standby window that ends at/before the report time
   /// - Other days (OFF, transport-only, hotel-only): 0
+  ///
+  /// Standby detection uses word-boundary SB tokens on marker lines only — a
+  /// plain 'SB' substring is not safe: airport codes such as "ESB" and the
+  /// SB1 rest markers emitted on pairing days must never turn a FLY day into
+  /// a standby day (that bug under-counted whole pairing days at 25%).
   String calculateTotalDutyTime(List<ScheduleDay> schedule) {
     int totalMinutes = 0;
     int dutyDays = 0;
     int standbyDays = 0;
 
+    // Normalized flight-leg lines look like "XQ146 07:35 ~ 11:06 AYT-FRA".
+    final legRegex =
+        RegExp(r'\d{2}:\d{2}\s*[-~]\s*\d{2}:\d{2}\s+[A-Z]{3}\s*-\s*[A-Z]{3}');
+    // Genuine standby marker: "SB2 AYT 04:00 ~ 05:45 AYT" (from a STANDBY
+    // summary) or a raw "Standby"/"SBY" line. Never matches inside "ESB" etc.
+    final sbMarkerRegex = RegExp(r'\b(SB[1-3]|SBY)\b', caseSensitive: false);
+
     print('[DEBUG] calculateTotalDutyTime: START - ${schedule.length} days to process');
     for (final day in schedule) {
-      final eventStrings = <String>[];
-      for (final event in day.events) {
-        eventStrings.add(event);
-      }
+      final eventStrings = day.events.toList();
 
-      // Check if this is a standby day
-      final isStandby = day.events.any((e) => e.contains('SB'));
+      bool isStandbyMarker(String e) =>
+          sbMarkerRegex.hasMatch(e) || e.toUpperCase().contains('STANDBY');
 
-      if (isStandby) {
-        // Standby: 25% of the standby window
-        int standbyMinutes = 0;
-        for (final event in day.events) {
-          final match = RegExp(r'(\d{2}:\d{2})\s*[-~]\s*(\d{2}:\d{2})').firstMatch(event);
-          if (match != null) {
-            final start = _timeToMinutes(match.group(1)!);
-            final end = _timeToMinutes(match.group(2)!);
-            int diff = end - start;
-            if (diff < 0) diff += 24 * 60;
-            standbyMinutes += diff;
+      final hasFlightLegs = eventStrings.any(legRegex.hasMatch);
+
+      /// Sums standby-window minutes from standby marker lines only.
+      ///
+      /// With [reportMinutes] set (mixed standby+flight day), only windows
+      /// ending at/before the report time are credited — later "SB" windows
+      /// are post-duty rest, not standby.
+      int standbyWindowMinutes({int? reportMinutes}) {
+        int minutes = 0;
+        for (final event in eventStrings) {
+          if (!isStandbyMarker(event)) continue;
+          final match = RegExp(r'(\d{2}:\d{2})\s*[-~]\s*(\d{2}:\d{2})')
+              .firstMatch(event);
+          if (match == null) continue;
+          final start = _timeToMinutes(match.group(1)!);
+          var end = _timeToMinutes(match.group(2)!);
+          if (end < start) end += 24 * 60;
+          if (reportMinutes == null) {
+            minutes += end - start;
+          } else {
+            var report = reportMinutes;
+            if (report < start) report += 24 * 60;
+            if (end <= report) minutes += end - start;
           }
         }
-        final standbyDuty = (standbyMinutes * 0.25).round();
-        totalMinutes += standbyDuty;
-        standbyDays++;
-        print('[DEBUG] calculateTotalDutyTime: day=${DateFormat('yyyy-MM-dd').format(day.date)} '
-            'STANDBY events=$eventStrings standbyWindow=${standbyMinutes}min '
-            'duty25%=${standbyDuty}min');
-      } else {
-        // Duty day: Report/Check-in -> Release
+        return minutes;
+      }
+
+      if (hasFlightLegs) {
+        // Flight-duty day (possibly preceded by a genuine standby window).
         String? reportTime;
         String? releaseTime;
-        for (final event in day.events) {
+        for (final event in eventStrings) {
           if (event.contains('Report') || event.contains('Check-in')) {
             final m = RegExp(r'(\d{1,2}:\d{2})').firstMatch(event);
             if (m != null) reportTime = m.group(1);
@@ -134,19 +155,43 @@ class IcsParserService {
           }
         }
 
+        int dayMinutes = 0;
         if (reportTime != null && releaseTime != null) {
           final start = _timeToMinutes(reportTime);
           final end = _timeToMinutes(releaseTime);
           int diff = end - start;
           if (diff < 0) diff += 24 * 60;
-          totalMinutes += diff;
+          dayMinutes += diff;
           dutyDays++;
-          print('[DEBUG] calculateTotalDutyTime: day=${DateFormat('yyyy-MM-dd').format(day.date)} '
-              'DUTY report=$reportTime release=$releaseTime diff=${diff}min');
-        } else {
-          print('[DEBUG] calculateTotalDutyTime: day=${DateFormat('yyyy-MM-dd').format(day.date)} '
-              'NO DUTY (report=$reportTime release=$releaseTime) events=$eventStrings');
         }
+
+        // Credit a pre-duty standby window at 25% (e.g. SB2 04:00~05:45
+        // before a 05:45 report). Windows overlapping or after the duty are
+        // rest periods and stay at 0.
+        final preDutyStandby = reportTime != null
+            ? standbyWindowMinutes(reportMinutes: _timeToMinutes(reportTime))
+            : 0;
+        if (preDutyStandby > 0) {
+          dayMinutes += (preDutyStandby * 0.25).round();
+          standbyDays++;
+        }
+
+        totalMinutes += dayMinutes;
+        print('[DEBUG] calculateTotalDutyTime: day=${DateFormat('yyyy-MM-dd').format(day.date)} '
+            'DUTY report=$reportTime release=$releaseTime '
+            'preDutyStandby=${preDutyStandby}min day=${dayMinutes}min');
+      } else if (eventStrings.any(isStandbyMarker)) {
+        // Pure standby day (no flight legs): 25% of the standby window.
+        final standbyMinutes = standbyWindowMinutes();
+        final standbyDuty = (standbyMinutes * 0.25).round();
+        totalMinutes += standbyDuty;
+        standbyDays++;
+        print('[DEBUG] calculateTotalDutyTime: day=${DateFormat('yyyy-MM-dd').format(day.date)} '
+            'STANDBY events=$eventStrings standbyWindow=${standbyMinutes}min '
+            'duty25%=${standbyDuty}min');
+      } else {
+        print('[DEBUG] calculateTotalDutyTime: day=${DateFormat('yyyy-MM-dd').format(day.date)} '
+            'NO DUTY events=$eventStrings');
       }
     }
     print('[DEBUG] calculateTotalDutyTime: totalDays=${schedule.length} dutyDays=$dutyDays '
@@ -457,7 +502,12 @@ class IcsParserService {
        output.add('Release $startTime');
     } else if (summary.contains('OFF')) {
        output.add('OFF');
-    } else if (summary.toUpperCase().contains('SB') || summary.toUpperCase().contains('STANDBY')) {
+    } else if (RegExp(r'\b(SB[1-3]?|SBY|STAND[- ]?BY)\b', caseSensitive: false)
+        .hasMatch(summary)) {
+        // "SB1"/"SB2"/"SB3"/"SBY" or "Standby"/"STANDBY" as a standalone token.
+        // A plain substring 'SB' check is NOT safe here: airport codes such as
+        // "ESB" (e.g. "FLY (AYT-DUS-ESB)") would misroute whole flight days
+        // into this standby branch and lose their duty time.
         // "SB1" or "Standby" or "STANDBY"
         // Generate: "SB1 AYT 00:00 ~ 10:00"
         String code = 'SB1'; // Default
