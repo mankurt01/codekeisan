@@ -3,6 +3,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:keisan/services/app_id_service.dart';
 
+/// Thrown when a user's registration exists but has not been approved by an
+/// admin yet (isApproved == false), or when a new registration was created and
+/// is pending approval. UI layers should catch this and show an "Admin
+/// Approval is Required" message instead of a generic sign-in failure.
+class AdminApprovalRequiredException implements Exception {
+  final String message;
+  AdminApprovalRequiredException([this.message = 'Admin Approval is Required']);
+
+  @override
+  String toString() => message;
+}
+
 class DeviceAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -76,7 +88,7 @@ class DeviceAuthService {
         });
         
         if (!isApproved) {
-          throw Exception(
+          throw AdminApprovalRequiredException(
             'Uygulamanız henüz onaylanmamış. Lütfen onay sürecinin tamamlanmasını bekleyin.',
           );
         }
@@ -108,15 +120,15 @@ class DeviceAuthService {
     try {
       await userRegDocRef.set(registrationData);
       debugPrint('DeviceAuthService.registerUser: New registration created successfully');
-      
+
       // Throw exception to indicate approval is needed
-      throw Exception(
+      throw AdminApprovalRequiredException(
         'Uygulama başarıyla kaydedildi ancak admin onayı bekleniyor. Lütfen onay sürecinin tamamlanmasını bekleyin.',
       );
     } catch (e) {
       debugPrint('DeviceAuthService.registerUser: Error during registration: $e');
       // Re-throw if it's our approval message
-      if (e.toString().contains('admin onayı bekleniyor')) {
+      if (e is AdminApprovalRequiredException || e.toString().contains('admin onayı bekleniyor')) {
         rethrow;
       }
       throw Exception('Uygulama kaydı sırasında bilinmeyen bir hata oluştu: $e');

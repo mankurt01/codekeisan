@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:keisan/services/custom_auth_service.dart';
+import 'package:keisan/services/device_auth_service.dart';
 import 'package:keisan/services/app_metadata_service.dart';
 import 'package:keisan/services/app_id_service.dart';
 import 'package:keisan/routes.dart';
@@ -256,6 +257,11 @@ class _NewSignInScreenState extends State<NewSignInScreen> {
         _errorMessage = _getPlatformExceptionMessage(e);
       });
       debugPrint('PlatformException: ${e.code} - ${e.message}');
+    } on AdminApprovalRequiredException catch (e) {
+      setState(() {
+        _errorMessage = 'Admin Approval is Required. ${e.message}';
+      });
+      debugPrint('Admin approval required during Google sign-in: $e');
     } catch (e) {
       setState(() {
         _errorMessage = 'Sign in failed. Please try again later.';
@@ -293,10 +299,20 @@ class _NewSignInScreenState extends State<NewSignInScreen> {
         _errorMessage = _getPlatformExceptionMessage(e);
       });
       debugPrint('PlatformException: ${e.code} - ${e.message}');
+    } on AdminApprovalRequiredException catch (e) {
+      setState(() {
+        _errorMessage = 'Admin Approval is Required. ${e.message}';
+      });
+      debugPrint('Admin approval required during Apple sign-in: $e');
     } catch (e) {
       if (e.toString().contains('canceled')) {
         setState(() {
           _errorMessage = 'Apple sign-in was canceled.';
+        });
+      } else if (e.toString().contains('onay') ||
+          e.toString().contains('approval')) {
+        setState(() {
+          _errorMessage = 'Admin Approval is Required. $e';
         });
       } else {
         setState(() {
