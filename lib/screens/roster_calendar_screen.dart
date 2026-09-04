@@ -852,13 +852,13 @@ class _RosterCalendarScreenState extends State<RosterCalendarScreen> {
       }
 
       if (currentSeg != null) {
-        (currentSeg!['lines'] as List<String>).add(trimmed);
+        (currentSeg['lines'] as List<String>).add(trimmed);
       } else {
         // Lines before first date header (e.g. preamble)
         currentSeg = {'header': null, 'lines': <String>[trimmed]};
       }
     }
-    if (currentSeg != null) segments.add(currentSeg!);
+    if (currentSeg != null) segments.add(currentSeg);
 
     // Collect all flight legs for totals
     final allFlightLegs = <Map<String, String>>[];
@@ -1078,7 +1078,7 @@ class _RosterCalendarScreenState extends State<RosterCalendarScreen> {
         ],
         // Check-in
         if (checkIn != null)
-          _buildInfoRow('Check-in', checkIn!, Colors.white70),
+          _buildInfoRow('Check-in', checkIn, Colors.white70),
         // Flight legs
         ...flightLegs.map((leg) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 2),
@@ -1107,7 +1107,7 @@ class _RosterCalendarScreenState extends State<RosterCalendarScreen> {
             releaseAirport != null
                 ? 'Release ($releaseAirport)'
                 : 'Release',
-            release!,
+            release,
             hasLayoverSection ? Colors.orange[300]! : Colors.white70,
           ),
         // Embedded layover section
@@ -1178,7 +1178,7 @@ class _RosterCalendarScreenState extends State<RosterCalendarScreen> {
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
-                    transportLine!,
+                    transportLine,
                     style:
                         const TextStyle(color: Colors.white70, fontSize: 13),
                   ),
@@ -1205,7 +1205,7 @@ class _RosterCalendarScreenState extends State<RosterCalendarScreen> {
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
-                    hotelName!,
+                    hotelName,
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,

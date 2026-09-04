@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'device_auth_service.dart';
+
 /// Result of the startup auth gate.
 enum AuthStartState {
   /// Valid Firebase session restored (or admin bypass active) — open the app.
@@ -20,7 +22,8 @@ enum AuthStartState {
 /// Startup decision order (see [determineStartState]):
 /// 1. Internet access is mandatory — the app cannot be used offline.
 /// 2. Admin bypass active → open directly into the app.
-/// 3. Firebase session (persisted token cache) valid → open directly.
+/// 3. Firebase session (persisted token cache) valid AND user still approved
+///    in Firestore (isApproved == true) → open directly.
 /// 4. Otherwise → login screen.
 class AuthSessionService {
   static const String _lastUidKey = 'last_signed_in_uid';
@@ -45,6 +48,14 @@ class AuthSessionService {
 
     // 3. Restored Firebase session?
     if (await hasValidSession()) {
+      // 3b. Session valid, but the user may have been revoked (isApproved set
+      // to false by an admin) since the last sign-in. Enforce approval here.
+      final approved = await DeviceAuthService().isUserApproved();
+      if (!approved) {
+        debugPrint(
+            'AuthSessionService: Session restored but user not approved — opening login screen');
+        return AuthStartState.needsLogin;
+      }
       debugPrint('AuthSessionService: Valid session restored — opening app directly');
       return AuthStartState.sessionRestored;
     }

@@ -101,7 +101,7 @@ class DeviceAuthService {
       'appId': currentAppId,
       'registeredAt': FieldValue.serverTimestamp(),
       'lastUsedAt': FieldValue.serverTimestamp(),
-      'isApproved': true, // Default to false - requires admin approval
+      'isApproved': false, // Default to false - requires admin approval
     };
 
 

@@ -84,7 +84,7 @@ class LayoverService {
         // Detect date header → start new segment
         if (dateHeaderRegex.hasMatch(trimmed)) {
           if (currentSegment != null) {
-            segments.add(currentSegment!);
+            segments.add(currentSegment);
           }
           // Try to parse the actual date from the header
           try {
@@ -107,7 +107,7 @@ class LayoverService {
                   firstDateSeen = currentSegmentDate;
                   dayOffset = 0;
                 } else {
-                  dayOffset = currentSegmentDate!
+                  dayOffset = currentSegmentDate
                       .difference(firstDateSeen!)
                       .inDays;
                 }
